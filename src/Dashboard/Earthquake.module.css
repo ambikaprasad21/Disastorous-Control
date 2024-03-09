@@ -1,0 +1,27 @@
+.section {
+  background-color: gray;
+  padding: 4rem 6rem;
+
+  /* glass morphism */
+  background: rgba(128, 128, 128, 0.153); /* Glass background color */
+  backdrop-filter: blur(10px); /* Glass blur effect */
+  border-radius: 10px;
+  /* padding: 20px;
+  margin: 20px;
+  width: 300px; /* Adjust width as needed */
+  max-width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* leaflet map */
+.map {
+  border: 0px solid transparent;
+  border-radius: 10px;
+}

@@ -1,0 +1,15 @@
+.section {
+  margin: 0 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  margin-bottom: 10rem;
+  padding: 8rem 2rem;
+}
+
+.bg {
+  /* background: linear-gradient(to right bottom, #87ca69, #a8e890); */
+  background-image: url("./../../public/images/bg_nature.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
