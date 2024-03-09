@@ -1,16 +1,15 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-// App.js
+import Dashboard from "./Dashboard/Dashboard";
 
-import React from 'react';
-import Header from './Header';
-
-const App = () => {
+function App() {
   return (
-    <div>
-      <Header />
-      {/* Other components or content */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
