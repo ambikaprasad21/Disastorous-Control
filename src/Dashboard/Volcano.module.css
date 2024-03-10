@@ -7,8 +7,8 @@
   backdrop-filter: blur(10px); /* Glass blur effect */
   border-radius: 10px;
   /* padding: 20px;
-  margin: 20px;
-  width: 300px; /* Adjust width as needed */
+    margin: 20px;
+    width: 300px; /* Adjust width as needed */
   max-width: 100%;
   box-shadow: 10px 10px 15px rgba(255, 255, 255, 0.4),
     0 1px 3px rgba(255, 255, 255, 0.4); /* Box shadow */
@@ -16,7 +16,7 @@
 
 .container {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 2rem;
 }
@@ -25,6 +25,7 @@
   color: white;
   flex: 1; /* This makes the description take the remaining space */
   max-width: 50%; /* Set a maximum width of 50% */
+  position: relative;
 }
 
 .description h2 {
@@ -47,6 +48,7 @@
 }
 
 .quote {
+  /* color: white; */
   margin-top: -3rem;
 }
 
@@ -56,10 +58,10 @@
 
 .last-quote {
   position: absolute;
-  bottom: 4rem;
-  left: 40rem;
-  width: 6rem;
-  height: 6rem;
+  bottom: -2.5rem;
+  left: 20rem;
+  width: 5rem;
+  height: 5rem;
 }
 
 /* leaflet map */

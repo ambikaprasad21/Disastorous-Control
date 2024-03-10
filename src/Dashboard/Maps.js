@@ -1,6 +1,7 @@
 import Earthquake from "./Earthquake";
 import styles from "./Maps.module.css";
 import Tsunami from "./Tsunami";
+import Volcano from "./Volcano";
 
 function Maps() {
   return (
@@ -8,6 +9,7 @@ function Maps() {
       <div className={styles.section}>
         <Earthquake />
         <Tsunami />
+        <Volcano />
       </div>
     </div>
   );

@@ -8,8 +8,10 @@
 }
 
 .bg {
-  /* background: linear-gradient(to right bottom, #87ca69, #a8e890); */
-  background-image: url("./../../public/images/bg_nature.jpg");
+  /* background: linear-gradient(to right, #87ca69, #a8e890); */
+  background: linear-gradient(#e66465, #9198e5);
+  /* background-image: url("./../../public/images/bg-nature.png"); */
+  /* background-color: orange; */
   background-size: cover;
   background-repeat: no-repeat;
 }
