@@ -10,7 +10,8 @@
   margin: 20px;
   width: 300px; /* Adjust width as needed */
   max-width: 100%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1); /* Box shadow */
+  box-shadow: 10px 10px 15px rgba(255, 255, 255, 0.4),
+    0 1px 3px rgba(255, 255, 255, 0.4); /* Box shadow */
 }
 
 .container {
