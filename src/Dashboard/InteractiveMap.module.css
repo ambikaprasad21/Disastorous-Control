@@ -1,15 +1,14 @@
-.container {
+.section {
   width: 90%;
   margin: 10rem auto;
 }
-.container h1 {
+.section h1 {
   text-align: center;
   margin-bottom: 5rem;
 }
 
-.section {
+.container {
   display: flex;
-  z-index: -1000;
 }
 
 .details {
@@ -21,6 +20,7 @@
 
 /* leaflet css */
 .map {
+  z-index: 10; /* this worked to move zoom in and out below  navbar*/
   flex: 0 0 75%;
   /* border: 0px solid transparent; */
   border-top-left-radius: 10px;

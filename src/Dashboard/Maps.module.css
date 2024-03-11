@@ -1,3 +1,10 @@
+.heading {
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+}
+
 .section {
   margin: 0 5rem;
   display: flex;

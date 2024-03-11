@@ -5,13 +5,16 @@ import Volcano from "./Volcano";
 
 function Maps() {
   return (
-    <div className={styles.bg}>
-      <div className={styles.section}>
-        <Earthquake />
-        <Tsunami />
-        <Volcano />
+    <>
+      <h1 className={styles.heading}>Various Records</h1>
+      <div className={styles.bg}>
+        <div className={styles.section}>
+          <Earthquake />
+          <Tsunami />
+          <Volcano />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
