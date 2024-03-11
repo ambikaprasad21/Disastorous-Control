@@ -2,6 +2,7 @@
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 10;
 }
 
 .header {
@@ -10,11 +11,15 @@
   align-items: center;
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.1); /* Adjust opacity as needed */
+  background: rgba(255, 255, 255, 0.1); /*Adjust opacity as needed*/
+  /* background-color: white; */
   backdrop-filter: blur(10px); /* Adjust blur effect as needed */
   padding: 10px 20px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Adjust shadow as needed */
-  z-index: 1000;
+}
+
+.scrolled {
+  background-color: white;
 }
 
 .logo {
@@ -30,7 +35,7 @@
   display: flex;
   gap: 20px;
   font-size: 1.6rem;
-  color: white;
+  color: green;
 }
 
 .nav-bar li {
@@ -39,9 +44,20 @@
   border-radius: 5px;
   transition: background-color 0.3s ease;
   font-weight: 550;
+
+  /* shadow */
+  border: solid 1px gray;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+  margin-right: 2rem;
 }
 
 .nav-bar li:hover {
-  background-color: white;
-  color: black;
+  background-color: green;
+  color: white;
+
+  /* shadow */
+  /* shadow */
+  border: solid 1px gray;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+  margin-right: 2rem;
 }
