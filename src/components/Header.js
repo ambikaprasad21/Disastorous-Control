@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 import { useEffect, useState } from "react";
 
@@ -28,18 +28,11 @@ const Header = () => {
 
         <nav className={styles["nav-bar"]}>
           <ul>
-            <li>Chemical Calculator</li>
             <li>
-              <Link
-                to={"/data-visulization"}
-                style={{
-                  cursor: "pointer",
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
-              >
-                File Upload
-              </Link>{" "}
+              <NavLink to={"/chemical-calculator"}>Chemical Calculator</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/data-visulization"}>File Upload</NavLink>
             </li>
             <li>Chemical E-commerce</li>
           </ul>
