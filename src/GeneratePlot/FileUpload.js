@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import styles from "./FileUpload.module.css";
 
 function FileUpload() {
+  const [isLoading1, setIsLoading1] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
   const [file, setFile] = useState(null);
   const [chartImage, setChartImage] = useState(null);
   const [describeImage, setDescribeImage] = useState(null);
@@ -20,6 +22,8 @@ function FileUpload() {
     const formData = new FormData();
     formData.append("file", file);
 
+    // console.log(isLoading);
+    setIsLoading1(true);
     fetch("http://127.0.0.1:5000/upload", {
       method: "POST",
       body: formData,
@@ -52,7 +56,10 @@ function FileUpload() {
               });
           });
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => console.error("Error:", error))
+      .finally(() => setIsLoading1(false));
+
+    // console.log(isLoading);
 
     // fetch("http://127.0.0.1:5000/upload", {
     //   method: "POST",
@@ -87,7 +94,9 @@ function FileUpload() {
     formData.append("file", file);
     formData.append("column1", column1);
     formData.append("column2", column2);
+
     if (column1 && column2) {
+      setIsLoading2(true);
       const response = await fetch(
         "http://localhost:5000/generate_two_column_chart",
         {
@@ -95,6 +104,7 @@ function FileUpload() {
           body: formData,
         }
       );
+      setIsLoading2(false);
 
       if (response.ok) {
         const blob = await response.blob();
@@ -115,7 +125,12 @@ function FileUpload() {
         </h1>
 
         <div className={styles["file-upload"]}>
-          <input type="file" onChange={handleFileChange} accept=".csv" />
+          <input
+            type="file"
+            onChange={handleFileChange}
+            accept=".csv"
+            disabled={isLoading1}
+          />
           <div className={styles["file-upload__text"]}>
             <p>.csv files</p>
             <p>Upload data file to see enhanced visulization</p>
@@ -152,17 +167,21 @@ function FileUpload() {
 
         <div className={styles["canvas"]}>
           <div className={styles["combined col"]}>
-            <button onClick={handleUpload} className={styles.btn}>
-              Combined Data Visualization
+            <button
+              onClick={handleUpload}
+              className={styles.btn}
+              disabled={isLoading1}
+            >
+              {isLoading1 ? "Loading..." : "Combined Data Visualization"}
             </button>
-            {chartImage && (
+            {chartImage && !isLoading1 && (
               <img
                 src={chartImage}
                 alt="Colored Chart"
                 className={styles.plot}
               />
             )}
-            {describeImage && (
+            {describeImage && !isLoading1 && (
               <img
                 src={describeImage}
                 alt="Describe Chart"
@@ -195,12 +214,13 @@ function FileUpload() {
               <button
                 onClick={handleGenerateTwoColumnChart}
                 className={styles.btn}
+                disabled={isLoading2}
               >
-                Generate Two-Column Chart
+                {isLoading2 ? "Loading..." : "Generate Two-Column Chart"}
               </button>
             </div>
 
-            {twoColumnChartImage && (
+            {twoColumnChartImage && !isLoading2 && (
               <img
                 src={twoColumnChartImage}
                 alt="Two-Column Chart"

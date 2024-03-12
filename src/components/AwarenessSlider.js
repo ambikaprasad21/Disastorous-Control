@@ -1,9 +1,25 @@
 import { Link } from "react-router-dom";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import styles from "./AwarenessSlider.module.css";
+import { useEffect } from "react";
 
 function AwarenessSlider() {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({ opacity: 1, y: 0, transition: { duration: 1 } });
+    }
+  }, [inView, controls]);
   return (
-    <div className={styles.section}>
+    <motion.div
+      className={styles.section}
+      ref={ref}
+      initial={{ opacity: 0, y: 100 }}
+      animate={controls}
+    >
       <div className={styles.slider}>
         <div className={styles["slide-track"]}>
           <div className={styles.slide}>
@@ -95,7 +111,7 @@ function AwarenessSlider() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
