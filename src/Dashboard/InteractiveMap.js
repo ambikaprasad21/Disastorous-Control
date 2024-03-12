@@ -25,10 +25,10 @@ const Map = ({ position, onMapClick }) => {
   return (
     <MapContainer
       center={position}
-      zoom={2}
-      minZoom={2}
+      zoom={3}
+      minZoom={3}
       // zoomControl={false}
-      style={{ height: "70vh" }}
+      style={{ height: "80vh" }}
       className={styles.map}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -122,7 +122,7 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
               "This is not any valid point, or you might have zoomed out to much come close"
             );
           }
-          setName(data[0].name);
+          setName(data[0].local_names.en);
 
           setCountry(data[0].country);
           // setName(data.name || data.locality);
@@ -150,7 +150,7 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
                 myPosition && myPosition[0]
               }&lon=${
                 myPosition && myPosition[1]
-              }&appid=f49c0c5316f07e73f736e7539d1419a1`
+              }&units=metric&appid=f49c0c5316f07e73f736e7539d1419a1`
             );
 
             const res2 = await fetch(
@@ -282,70 +282,159 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
               {
                 <div className={styles.weatherInfo}>
                   <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Temperature:</span>
-                    <span className={styles.value}>{temp}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Pressure:</span>
-                    <span className={styles.value}>{pressure}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Humidity:</span>
-                    <span className={styles.value}>{humidity}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Sea Level:</span>
-                    <span className={styles.value}>{seaLevel}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Wind Speed:</span>
-                    <span className={styles.value}>{windSpeed}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Time Zone:</span>
-                    <span className={styles.value}>{timeZone}</span>
+                    <span className={styles.label}>
+                      <img src="./images/weather/hot.png" alt="temperature" />
+                      <p>Temperature:</p>
+                    </span>
+                    <span className={styles.value}>{temp} &nbsp;&deg;C</span>
                   </div>
                   <div className={styles.weatherInfoItem}>
                     <span className={styles.label}>
-                      Air Quality Index (AQI):
+                      <img
+                        src="./images/weather/pressure-gauge.png"
+                        alt="pressure"
+                      />
+                      <p>Pressure:</p>
                     </span>
-                    <span className={styles.value}>{aqiValues[aqi]}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Carbon Monoxide:</span>
-                    <span className={styles.value}>{co}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Nitrogen Monoxide:</span>
-                    <span className={styles.value}>{no}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Nitrogen Dioxide:</span>
-                    <span className={styles.value}>{no2}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Ozone:</span>
-                    <span className={styles.value}>{o3}</span>
-                  </div>
-                  <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Sulphur Dioxide:</span>
-                    <span className={styles.value}>{so2}</span>
+                    <span className={styles.value}>{pressure} &nbsp;hPa</span>
                   </div>
                   <div className={styles.weatherInfoItem}>
                     <span className={styles.label}>
-                      Fine Particles Matter (PM2.5):
+                      <img src="./images/weather/cloud.png" alt="humidity" />
+                      <p>Humidity:</p>
                     </span>
-                    <span className={styles.value}>{pm2_5}</span>
+                    <span className={styles.value}>{humidity} &nbsp;%</span>
                   </div>
                   <div className={styles.weatherInfoItem}>
                     <span className={styles.label}>
-                      Coarse Particulate Matter (PM10):
+                      <img
+                        src="./images/weather/sea-level.png"
+                        alt="sea level"
+                      />
+                      <p>Sea Level:</p>
                     </span>
-                    <span className={styles.value}>{pm10}</span>
+                    <span className={styles.value}>{seaLevel} &nbsp;hPa</span>
                   </div>
                   <div className={styles.weatherInfoItem}>
-                    <span className={styles.label}>Ammonia:</span>
-                    <span className={styles.value}>{nh3}</span>
+                    <span className={styles.label}>
+                      <img src="./images/weather/wind.png" alt="wind" />
+                      <p>Wind Speed:</p>
+                    </span>
+                    <span className={styles.value}>
+                      {windSpeed} &nbsp; m/sec
+                    </span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img
+                        src="./images/weather/time-zone.png"
+                        alt="time zone"
+                      />
+                      <p>Time Zone:</p>
+                    </span>
+                    <span className={styles.value}>{timeZone}&nbsp;UTC</span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img
+                        src="./images/weather/air-quality-sensor.png"
+                        alt="air quality index"
+                      />
+                      <p>Air Quality Index (AQI):</p>
+                    </span>
+                    <span className={styles.value}>
+                      {aqiValues[aqi]}&nbsp;AQI
+                    </span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img
+                        src="./images/weather/gas-detector.png"
+                        alt="carbon monoxide"
+                      />
+                      <p>Carbon Monoxide:</p>
+                    </span>
+                    <span className={styles.value}>
+                      {co}&nbsp;&#956;g/m<sup>3</sup>
+                    </span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img
+                        src="./images/weather/nitrogen.png"
+                        alt="nitrogen monodie"
+                      />
+                      <p>Nitrogen Monoxide:</p>
+                    </span>
+                    <span className={styles.value}>
+                      {no}&nbsp;&#956;g/m<sup>3</sup>
+                    </span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img
+                        src="./images/weather/dioxide.png"
+                        alt="nitrogen dioxide"
+                      />
+                      <p>Nitrogen Dioxide:</p>
+                    </span>
+                    <span className={styles.value}>
+                      {no2}&nbsp;&#956;g/m<sup>3</sup>
+                    </span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img src="./images/weather/ozone.png" alt="ozone" />
+                      <p>Ozone:</p>
+                    </span>
+                    <span className={styles.value}>
+                      {o3}&nbsp;&#956;g/m<sup>3</sup>
+                    </span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img
+                        src="./images/weather/fire.png"
+                        alt="sulphur dioxide"
+                      />
+                      <p>Sulphur Dioxide:</p>
+                    </span>
+                    <span className={styles.value}>
+                      {so2}&nbsp;&#956;g/m<sup>3</sup>
+                    </span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img
+                        src="./images/weather/pm2.5.png"
+                        alt="fine particles"
+                      />
+                      <p>Fine Particles Matter (PM2.5):</p>
+                    </span>
+                    <span className={styles.value}>
+                      {pm2_5}&nbsp;&#956;g/m<sup>3</sup>
+                    </span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img
+                        src="./images/weather/pm10.png"
+                        alt="course particles"
+                      />
+                      <p>Coarse Particulate Matter (PM10):</p>
+                    </span>
+                    <span className={styles.value}>
+                      {pm10}&nbsp;&#956;g/m<sup>3</sup>
+                    </span>
+                  </div>
+                  <div className={styles.weatherInfoItem}>
+                    <span className={styles.label}>
+                      <img src="./images/weather/ammonia.png" alt="ammonia" />
+                      <p>Ammonia:</p>
+                    </span>
+                    <span className={styles.value}>
+                      {nh3}&nbsp;&#956;g/m<sup>3</sup>
+                    </span>
                   </div>
                 </div>
 

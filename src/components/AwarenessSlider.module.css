@@ -18,7 +18,7 @@
   padding: 1rem 0;
   display: flex;
   width: calc(250px * 12);
-  animation: scroll 30s linear infinite;
+  animation: scroll 20s linear infinite;
 }
 
 .slide-track:hover {
@@ -37,6 +37,10 @@
   border: solid 1px gray;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
   margin-right: 2rem;
+}
+
+.slide:hover {
+  transform: scale(1);
 }
 
 .slide img {
@@ -62,25 +66,45 @@
   font-size: 1.2rem;
   color: white;
   padding: 6px 20px;
+  color: white;
+  text-decoration: none;
   background-color: rgb(34, 108, 226);
   border: none;
   border-radius: 3px;
-  transition: opacity 0.12s;
+  transition: all 0.08s;
+}
+
+.learn {
+  text-decoration: none;
+  color: inherit;
 }
 
 .btn:hover {
   opacity: 0.8;
-  cursor: pointer;
+  /* transform: scale(1.1); */
+  font-weight: 600;
+}
+
+.btn:hover .learn {
+  font-size: 1.4rem;
+}
+
+.btn:active {
+  opacity: 0.4;
 }
 
 .btn:active {
   opacity: 0.6;
 }
 
-.learn {
+/* .learn {
   color: white;
   text-decoration: none;
 }
+
+.learn:hover {
+  color: rgb(34, 108, 226);
+} */
 
 /* scroll animation */
 @keyframes scroll {

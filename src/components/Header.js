@@ -38,7 +38,7 @@ const Header = () => {
             <li>
               <NavLink to={"/data-visulization"}>File Upload</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to={"/chemical-market"}>Chemical E-Commerce</NavLink>
             </li>
             <li>
@@ -46,7 +46,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink to={"/login"}>Login</NavLink>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </header>

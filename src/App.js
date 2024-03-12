@@ -30,7 +30,7 @@ function App() {
               element={<p>Mass Energy Balance</p>}
             />
           </Route>
-          <Route path="chemical-market" element={<Market />} />
+          {/* <Route path="chemical-market" element={<Market />} /> */}
         </Routes>
       </BrowserRouter>
     </PositionProvider>
