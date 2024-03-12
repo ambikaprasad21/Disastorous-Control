@@ -5,6 +5,9 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 import "leaflet/dist/leaflet.css";
 import styles from "./Earthquake.module.css";
 
@@ -48,6 +51,8 @@ const Map = ({ position, earthquakes }) => {
 
 const Earthquake = () => {
   const [earthquakes, setEarthquakes] = useState([]);
+  const controls = useAnimation();
+  const [refdiv, inViewdiv] = useInView();
   const mapPosition = [51.505, -0.09]; // Initial map position
 
   useEffect(() => {
@@ -65,9 +70,24 @@ const Earthquake = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (inViewdiv) {
+      controls.start({
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.7 },
+      });
+    }
+  }, [inViewdiv, controls]);
+
   return (
     <>
-      <div className={styles.section}>
+      <motion.div
+        className={styles.section}
+        animate={controls}
+        ref={refdiv}
+        initial={{ opacity: 0, x: -100 }}
+      >
         <div className={styles.container}>
           <div className={styles.description}>
             <h2>Recent Earthquakes Map Activity</h2>
@@ -107,9 +127,10 @@ const Earthquake = () => {
               </g>
             </svg>
           </div>
+
           <Map position={mapPosition} earthquakes={earthquakes} />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

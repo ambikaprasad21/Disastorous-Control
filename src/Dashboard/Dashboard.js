@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 // import Navbar from "../components/Navbar";
 import Awareness from "./Awareness";
@@ -18,6 +19,7 @@ function Dashboard() {
       <Awareness />
       <InteractiveMap />
       <Maps />
+      <Footer />
     </>
   );
 }

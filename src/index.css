@@ -1,5 +1,12 @@
 @import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
 
+:root {
+  --color-brand--2: #00c46a;
+
+  --color-dark--1: #2d3439;
+
+  --color-light--2: #ececec;
+}
 * {
   margin: 0;
   padding: 0;
@@ -17,9 +24,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: #eaeaeaf6;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* --- (4) Leaflet container with map dimensions (other properties optional) --- */
+.leaflet-container {
+  height: 100%;
 }

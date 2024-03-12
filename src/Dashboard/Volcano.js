@@ -6,6 +6,9 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 // import { Icon } from "leaflet";
 import axios from "axios";
 
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 import L from "leaflet"; // Import Leaflet library
 // import customMarker from "./images/volcano_marker.png";
 
@@ -53,6 +56,20 @@ const Map = ({ position, volcanoes }) => {
 function Volcano() {
   const [volcanoes, setVolcanoes] = useState([]);
   const [mapCenter, setMapCenter] = useState([0, 0]);
+
+  const controls = useAnimation();
+  const [refdiv, inViewdiv] = useInView();
+
+  useEffect(() => {
+    if (inViewdiv) {
+      controls.start({
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.7 },
+      });
+    }
+  }, [inViewdiv, controls]);
+
   useEffect(() => {
     // Fetch volcano data from the provided API
     axios
@@ -74,7 +91,12 @@ function Volcano() {
       });
   }, []);
   return (
-    <div className={styles.section}>
+    <motion.div
+      className={styles.section}
+      animate={controls}
+      ref={refdiv}
+      initial={{ opacity: 0, x: -100 }}
+    >
       <div className={styles.container}>
         <div className={styles.description}>
           <h2>Valcanos</h2>
@@ -121,7 +143,7 @@ function Volcano() {
         </div>
         <Map position={mapCenter} volcanoes={volcanoes} />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

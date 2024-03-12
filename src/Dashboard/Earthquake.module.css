@@ -3,7 +3,7 @@
   padding: 4rem 6rem;
 
   /* glass morphism */
-  background: rgba(128, 128, 128, 0.153); /* Glass background color */
+  background: rgba(255, 255, 255, 0.1); /* Glass background color */
   backdrop-filter: blur(10px); /* Glass blur effect */
   border-radius: 10px;
   /* padding: 20px;
@@ -64,6 +64,7 @@
 
 /* leaflet map */
 .map {
+  /* height: 100%; */
   border: 0px solid transparent;
   border-radius: 10px;
 }
