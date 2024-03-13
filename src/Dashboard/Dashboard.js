@@ -10,16 +10,12 @@ function Dashboard() {
     <>
       <div className="hero">
         <Header />
-        
         <div className="video-container">
-          <video muted autoplay loop className="main-video">
-          <source src="images/bg-video.mp4" type="video/mp4" />
+          <video muted autoPlay loop className="main-video">
+            <source src="images/bg-video.mp4" type="video/mp4" />
           </video>
         </div>
-
-
       </div>
-      
       <Awareness />
       <InteractiveMap />
       <Maps />
