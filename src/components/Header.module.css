@@ -34,6 +34,13 @@
   gap: 1rem;
   font-size: 1.6rem;
   color: green;
+
+  
+}
+.nav-bar li {
+  /* background-color: white; */
+  background: rgba(120, 113, 113, 0.153);
+  border-radius: 5px ;
 }
 
 /* .nav-bar li {
