@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useMap, useMapEvents } from "react-leaflet";
 
-function DetectClick({ onMapClick }) {
+function DetectClick({ newCenter, onMapClick }) {
   // useMapEvents({
   //   click: (e) => {
   //     const { lat, lng } = e.latlng;
@@ -17,6 +17,7 @@ function DetectClick({ onMapClick }) {
       const { lat, lng } = e.latlng;
       map.setView([lat, lng], map.getZoom());
       onMapClick({ lat, lng });
+      newCenter({ lat, lng });
     },
   });
   return null;

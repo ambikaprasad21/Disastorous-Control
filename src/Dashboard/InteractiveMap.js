@@ -8,61 +8,64 @@ import DetectClick from "../utils/DetectClick";
 import React, { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import axios from "axios";
-import {
-  MapContainer,
-  TileLayer,
-  useMap,
-  useMapEvents,
-  getZoom,
-  Marker,
-  Popup,
-} from "react-leaflet";
-import markerIconPng from "leaflet/dist/images/marker-icon.png";
-import { Icon } from "leaflet";
+// import {
+//   MapContainer,
+//   TileLayer,
+//   useMap,
+//   useMapEvents,
+//   getZoom,
+//   Marker,
+//   Popup,
+// } from "react-leaflet";
+// import markerIconPng from "leaflet/dist/images/marker-icon.png";
+// import { Icon } from "leaflet";
 
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 import { usePosition } from "../Contexts/PositionContext";
+import MapWeth from "./MapWeth";
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+const api = "aa44a7b33e39cc0e971f3c78ebbdcf96";
 
-const Map = ({ position, onMapClick }) => {
-  return (
-    <MapContainer
-      center={position}
-      zoom={5}
-      enableHighAccuracy={true}
-      // minZoom={5}
-      // zoomControl={false}
-      style={{ height: "80vh" }}
-      className={styles.map}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+// const Map = ({ position, onMapClick }) => {
+//   return (
+//     <MapContainer
+//       center={position}
+//       zoom={5}
+//       enableHighAccuracy={true}
+//       // minZoom={5}
+//       // zoomControl={false}
+//       style={{ height: "80vh" }}
+//       className={styles.map}
+//     >
+//       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      <Marker
-        position={position || [51.505, -0.09]}
-        icon={
-          new Icon({
-            iconUrl: markerIconPng,
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-          })
-        }
-      >
-        <Popup>
-          {position &&
-            `${position[0].toFixed(2) || ""}, ${position[1].toFixed(2) || ""}`}
-        </Popup>
-      </Marker>
+//       <Marker
+//         position={position || [51.505, -0.09]}
+//         icon={
+//           new Icon({
+//             iconUrl: markerIconPng,
+//             iconSize: [25, 41],
+//             iconAnchor: [12, 41],
+//           })
+//         }
+//       >
+//         <Popup>
+//           {position &&
+//             `${position[0].toFixed(2) || ""}, ${position[1].toFixed(2) || ""}`}
+//         </Popup>
+//       </Marker>
 
-      <ChangeCenter position={position} />
-      <DetectClick onMapClick={onMapClick} />
-    </MapContainer>
-  );
-};
+//       <ChangeCenter position={position} />
+//       <DetectClick onMapClick={onMapClick} />
+//     </MapContainer>
+//   );
+// };
 
-const InteractiveMap = React.memo(({ onMapClick }) => {
+function InteractiveMap() {
   const [locError, setLocError] = useState(false);
   const { position, isLoading, error, setError } = usePosition();
+
   const [loadingNewPos, setLoadingNewPos] = useState(false);
   const [temp, setTemp] = useState(null);
   const [pressure, setPressure] = useState(null);
@@ -90,46 +93,46 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
 
   // console.log(position);
 
-  const [myPosition, setMyPosition] = useState(
-    position ? [position.latitude, position.longitude] : [51.505, -0.09]
-  );
-
-  // Update myPosition when position context changes
-  useEffect(() => {
-    if (position) {
-      setMyPosition([position.latitude, position.longitude]);
-    }
-  }, [position]);
-
-  // useEffect(
-  //   function () {
-  //     if (position) {
-  //       const lat = position.latitude;
-  //       const lng = position.longitude;
-  //       setMyPosition([lat, lng]);
-  //     }
-  //   },
-  //   [position]
+  // const [defualtLoc, setDefaultLoc] = useState(
+  //   position ? [position.latitude, position.longitude] : [51.505, -0.09]
   // );
+
+  const [clickPosition, setClickPosition] = useState([]);
+  const [myPosition, setMyPosition] = useState([51.505, -0.09]);
 
   useEffect(
     function () {
-      // if (!myPosition) return;
+      // if (isLoading) return;
       async function getLocWeather() {
         setLoadingNewPos(true);
         try {
           setLocError(false);
+
+          let lat, lng;
+
+          if (clickPosition && clickPosition.length === 2) {
+            // If user clicked on the map
+            [lat, lng] = clickPosition;
+          }
+          // } else if (position && position.latitude && position.longitude) {
+          //   // If user's position is available
+          //   lat = position.latitude;
+          //   lng = position.longitude;
+          else {
+            // Fallback to default coordinates
+            [lat, lng] = [51.505, -0.09];
+          }
           // console.log(myPosition[0], myPosition[1]);
           const response = await fetch(
-            `${BASE_URL}?latitude=${myPosition[0]}&longitude=${myPosition[1]}`
+            `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
 
           const res1 = await fetch(
-            ` https://api.openweathermap.org/data/2.5/weather?lat=${myPosition[0]}&lon=${myPosition[1]}&units=metric&appid=f49c0c5316f07e73f736e7539d1419a1`
+            ` https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&appid=${api}`
           );
 
           const res2 = await fetch(
-            `http://api.openweathermap.org/data/2.5/air_pollution?lat=${myPosition[0]}&lon=${myPosition[1]}&appid=f49c0c5316f07e73f736e7539d1419a1`
+            `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lng}&appid=${api}`
           );
 
           const data1 = await res1.json();
@@ -164,10 +167,6 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
 
           setName(data.city || data.locality || "");
           setCountry(data.countryName);
-
-          // setName(data[0].local_names.en);
-
-          // setCountry(data[0].country);
         } catch (err) {
           // console.log(err);
           setMyPosition([51.505, -0.09]);
@@ -177,101 +176,16 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
         }
       }
 
-      // async function getData() {
-      //   setLoadingNewPos(true);
-      //   try {
-      //     const res1 = await fetch(
-      //       ` https://api.openweathermap.org/data/2.5/weather?lat=${myPosition[0]}&lon=${myPosition[1]}&units=metric&appid=f49c0c5316f07e73f736e7539d1419a1`
-      //     );
-
-      //     const res2 = await fetch(
-      //       `http://api.openweathermap.org/data/2.5/air_pollution?lat=${myPosition[0]}&lon=${myPosition[1]}&appid=f49c0c5316f07e73f736e7539d1419a1`
-      //     );
-
-      //     const data1 = await res1.json();
-      //     const data2 = await res2.json();
-
-      //     setTemp(data1.main.temp);
-      //     setPressure(data1.main.pressure);
-      //     setHumidity(data1.main.humidity);
-      //     setSealevel(data1.main.sea_level);
-      //     setWindSpeed(data1.wind.speed);
-      //     setTimeZone(data1.timezone);
-
-      //     setAqi(data2.list[0].main.aqi);
-      //     setCo(data2.list[0].components.co);
-      //     setNo(data2.list[0].components.no);
-      //     setNo2(data2.list[0].components.no2);
-      //     setO3(data2.list[0].components.o3);
-      //     setSo2(data2.list[0].components.so2);
-      //     setPm2_5(data2.list[0].components.pm2_5);
-      //     setpm10(data2.list[0].components.pm10);
-      //     setnh3(data2.list[0].components.nh3);
-      //   } catch (err) {
-      //     console.log(err.message);
-      //   } finally {
-      //     setLoadingNewPos(false);
-      //   }
-      // }
-
-      // getData();
-
       getLocWeather();
     },
-    [myPosition]
+    [position, clickPosition]
   );
-
-  // const prevMyPositionRef = useRef(null);
-
-  // useEffect(
-  //   function () {
-  //     async function getData() {
-  //       setLoadingNewPos(true);
-  //       try {
-  //         const res1 = await fetch(
-  //           ` https://api.openweathermap.org/data/2.5/weather?lat=${myPosition[0]}&lon=${myPosition[1]}&units=metric&appid=f49c0c5316f07e73f736e7539d1419a1`
-  //         );
-
-  //         const res2 = await fetch(
-  //           `http://api.openweathermap.org/data/2.5/air_pollution?lat=${myPosition[0]}&lon=${myPosition[1]}&appid=f49c0c5316f07e73f736e7539d1419a1`
-  //         );
-
-  //         const data1 = await res1.json();
-  //         const data2 = await res2.json();
-
-  //         setTemp(data1.main.temp);
-  //         setPressure(data1.main.pressure);
-  //         setHumidity(data1.main.humidity);
-  //         setSealevel(data1.main.sea_level);
-  //         setWindSpeed(data1.wind.speed);
-  //         setTimeZone(data1.timezone);
-
-  //         setAqi(data2.list[0].main.aqi);
-  //         setCo(data2.list[0].components.co);
-  //         setNo(data2.list[0].components.no);
-  //         setNo2(data2.list[0].components.no2);
-  //         setO3(data2.list[0].components.o3);
-  //         setSo2(data2.list[0].components.so2);
-  //         setPm2_5(data2.list[0].components.pm2_5);
-  //         setpm10(data2.list[0].components.pm10);
-  //         setnh3(data2.list[0].components.nh3);
-  //       } catch (err) {
-  //         console.log(err.message);
-  //       } finally {
-  //         setLoadingNewPos(false);
-  //       }
-  //     }
-
-  //     getData();
-  //   },
-  //   [myPosition]
-  // );
 
   const handleMapClick = (coordinates) => {
     const { lat, lng } = coordinates;
 
     if (lat && lng) {
-      setMyPosition([lat, lng]);
+      setClickPosition([lat, lng]);
       setError(null);
     }
   };
@@ -309,6 +223,8 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
     }
   }, [inViewh1, inViewdiv, inViewMap, controls]);
 
+  if (!position) return;
+
   return (
     <motion.div className={styles.section}>
       <motion.h1
@@ -326,7 +242,7 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
           animate={controls}
           initial={{ opacity: 0, x: -70 }}
         >
-          <Map position={myPosition} onMapClick={handleMapClick} />
+          <MapWeth onMapClick={handleMapClick} />
         </motion.div>
 
         <motion.div
@@ -338,7 +254,6 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
           {isLoading && <h1>Loading...</h1>}
           {loadingNewPos && <h1>Loading...</h1>}
 
-          {/* {loadingNewPos && <h1>Loading...</h1>} */}
           {!isLoading && !loadingNewPos && (
             <>
               <h1 className={styles.city}>{`${name} ${country}`}</h1>
@@ -508,13 +423,13 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
       </div>
     </motion.div>
   );
-});
-
-function ChangeCenter({ position }) {
-  const map = useMap();
-  map.setView(position);
-  return null;
 }
+
+// function ChangeCenter({ position }) {
+//   const map = useMap();
+//   map.setView(position);
+//   return null;
+// }
 
 // function DetectClick({ onMapClick }) {
 //   const map = useMap();
