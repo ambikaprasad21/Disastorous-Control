@@ -8,59 +8,12 @@ import DetectClick from "../utils/DetectClick";
 import React, { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import axios from "axios";
-// import {
-//   MapContainer,
-//   TileLayer,
-//   useMap,
-//   useMapEvents,
-//   getZoom,
-//   Marker,
-//   Popup,
-// } from "react-leaflet";
-// import markerIconPng from "leaflet/dist/images/marker-icon.png";
-// import { Icon } from "leaflet";
 
-// import "leaflet/dist/leaflet.css";
 import { usePosition } from "../Contexts/PositionContext";
 import MapWeth from "./MapWeth";
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 const api = "aa44a7b33e39cc0e971f3c78ebbdcf96";
-
-// const Map = ({ position, onMapClick }) => {
-//   return (
-//     <MapContainer
-//       center={position}
-//       zoom={5}
-//       enableHighAccuracy={true}
-//       // minZoom={5}
-//       // zoomControl={false}
-//       style={{ height: "80vh" }}
-//       className={styles.map}
-//     >
-//       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-//       <Marker
-//         position={position || [51.505, -0.09]}
-//         icon={
-//           new Icon({
-//             iconUrl: markerIconPng,
-//             iconSize: [25, 41],
-//             iconAnchor: [12, 41],
-//           })
-//         }
-//       >
-//         <Popup>
-//           {position &&
-//             `${position[0].toFixed(2) || ""}, ${position[1].toFixed(2) || ""}`}
-//         </Popup>
-//       </Marker>
-
-//       <ChangeCenter position={position} />
-//       <DetectClick onMapClick={onMapClick} />
-//     </MapContainer>
-//   );
-// };
 
 function InteractiveMap() {
   const [locError, setLocError] = useState(false);
@@ -223,7 +176,7 @@ function InteractiveMap() {
     }
   }, [inViewh1, inViewdiv, inViewMap, controls]);
 
-  if (!position) return;
+  // if (!position) return;
 
   return (
     <motion.div className={styles.section}>

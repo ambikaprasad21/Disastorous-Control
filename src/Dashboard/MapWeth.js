@@ -44,7 +44,7 @@ function MapWeth({ onMapClick }) {
     }
   }
 
-  if (!position) return;
+  // if (!position) return;
   //   if (!newCenter) return;
   return (
     <MapContainer
