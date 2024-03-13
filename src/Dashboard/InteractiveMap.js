@@ -29,8 +29,9 @@ const Map = ({ position, onMapClick }) => {
   return (
     <MapContainer
       center={position}
-      zoom={2}
-      // minZoom={3}
+      zoom={5}
+      enableHighAccuracy={true}
+      // minZoom={5}
       // zoomControl={false}
       style={{ height: "80vh" }}
       className={styles.map}
@@ -114,42 +115,15 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
   useEffect(
     function () {
       // if (!myPosition) return;
-      async function getLocation() {
+      async function getLocWeather() {
+        setLoadingNewPos(true);
         try {
-          setLoadingNewPos(true);
           setLocError(false);
           // console.log(myPosition[0], myPosition[1]);
           const response = await fetch(
             `${BASE_URL}?latitude=${myPosition[0]}&longitude=${myPosition[1]}`
           );
 
-          const data = await response.json();
-          // console.log(data);
-
-          if (!data.countryCode) {
-            throw new Error(
-              "This is not any valid point, or you might have zoomed out to much come close"
-            );
-          }
-
-          setName(data.city || data.locality || "");
-          setCountry(data.countryName);
-
-          // setName(data[0].local_names.en);
-
-          // setCountry(data[0].country);
-        } catch (err) {
-          // console.log(err);
-          setMyPosition([51.505, -0.09]);
-          setLocError(true);
-        } finally {
-          setLoadingNewPos(false);
-        }
-      }
-
-      async function getData() {
-        setLoadingNewPos(true);
-        try {
           const res1 = await fetch(
             ` https://api.openweathermap.org/data/2.5/weather?lat=${myPosition[0]}&lon=${myPosition[1]}&units=metric&appid=f49c0c5316f07e73f736e7539d1419a1`
           );
@@ -177,16 +151,72 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
           setPm2_5(data2.list[0].components.pm2_5);
           setpm10(data2.list[0].components.pm10);
           setnh3(data2.list[0].components.nh3);
+
+          const data = await response.json();
+
+          // console.log(data);
+
+          if (!data.countryCode) {
+            throw new Error(
+              "This is not any valid point, or you might have zoomed out to much come close"
+            );
+          }
+
+          setName(data.city || data.locality || "");
+          setCountry(data.countryName);
+
+          // setName(data[0].local_names.en);
+
+          // setCountry(data[0].country);
         } catch (err) {
-          console.log(err.message);
+          // console.log(err);
+          setMyPosition([51.505, -0.09]);
+          setLocError(true);
         } finally {
           setLoadingNewPos(false);
         }
       }
 
-      getData();
+      // async function getData() {
+      //   setLoadingNewPos(true);
+      //   try {
+      //     const res1 = await fetch(
+      //       ` https://api.openweathermap.org/data/2.5/weather?lat=${myPosition[0]}&lon=${myPosition[1]}&units=metric&appid=f49c0c5316f07e73f736e7539d1419a1`
+      //     );
 
-      getLocation();
+      //     const res2 = await fetch(
+      //       `http://api.openweathermap.org/data/2.5/air_pollution?lat=${myPosition[0]}&lon=${myPosition[1]}&appid=f49c0c5316f07e73f736e7539d1419a1`
+      //     );
+
+      //     const data1 = await res1.json();
+      //     const data2 = await res2.json();
+
+      //     setTemp(data1.main.temp);
+      //     setPressure(data1.main.pressure);
+      //     setHumidity(data1.main.humidity);
+      //     setSealevel(data1.main.sea_level);
+      //     setWindSpeed(data1.wind.speed);
+      //     setTimeZone(data1.timezone);
+
+      //     setAqi(data2.list[0].main.aqi);
+      //     setCo(data2.list[0].components.co);
+      //     setNo(data2.list[0].components.no);
+      //     setNo2(data2.list[0].components.no2);
+      //     setO3(data2.list[0].components.o3);
+      //     setSo2(data2.list[0].components.so2);
+      //     setPm2_5(data2.list[0].components.pm2_5);
+      //     setpm10(data2.list[0].components.pm10);
+      //     setnh3(data2.list[0].components.nh3);
+      //   } catch (err) {
+      //     console.log(err.message);
+      //   } finally {
+      //     setLoadingNewPos(false);
+      //   }
+      // }
+
+      // getData();
+
+      getLocWeather();
     },
     [myPosition]
   );
@@ -306,8 +336,10 @@ const InteractiveMap = React.memo(({ onMapClick }) => {
           initial={{ opacity: 0, x: 50 }}
         >
           {isLoading && <h1>Loading...</h1>}
+          {loadingNewPos && <h1>Loading...</h1>}
+
           {/* {loadingNewPos && <h1>Loading...</h1>} */}
-          {!isLoading && (
+          {!isLoading && !loadingNewPos && (
             <>
               <h1 className={styles.city}>{`${name} ${country}`}</h1>
 
