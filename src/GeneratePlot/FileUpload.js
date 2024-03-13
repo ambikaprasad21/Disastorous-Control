@@ -3,6 +3,8 @@ import JSZip from "jszip";
 import Header from "../components/Header";
 import styles from "./FileUpload.module.css";
 
+const BASE_URL = "https://py-server-for-codeindroome.onrender.com";
+
 function FileUpload() {
   const [isLoading1, setIsLoading1] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
@@ -24,7 +26,7 @@ function FileUpload() {
 
     // console.log(isLoading);
     setIsLoading1(true);
-    fetch("http://127.0.0.1:5000/upload", {
+    fetch(`${BASE_URL}/upload`, {
       method: "POST",
       body: formData,
     })
@@ -58,34 +60,6 @@ function FileUpload() {
       })
       .catch((error) => console.error("Error:", error))
       .finally(() => setIsLoading1(false));
-
-    // console.log(isLoading);
-
-    // fetch("http://127.0.0.1:5000/upload", {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((response) => Promise.all([response.blob(), response.blob()]))
-    //   .then(([coloredChartBlob, describeChartBlob]) => {
-    //     setChartImage(URL.createObjectURL(coloredChartBlob));
-    //     setDescribeImage(URL.createObjectURL(describeChartBlob));
-    //   })
-    //   .catch((error) => console.error("Error:", error));
-
-    // const response = await fetch("http://localhost:5000/upload", {
-    //   method: "POST",
-    //   body: formData,
-    // });
-
-    // if (response.ok) {
-    //   const data = await response.json();
-    //   console.log(data);
-    //   setColoredChartPath(data.colored_chart_path);
-    // }
-    // if (response.ok) {
-    //   const blob = await response.blob();
-    //   setChartImage(URL.createObjectURL(blob));
-    // }
   };
 
   const handleGenerateTwoColumnChart = async () => {
@@ -97,13 +71,10 @@ function FileUpload() {
 
     if (column1 && column2) {
       setIsLoading2(true);
-      const response = await fetch(
-        "http://localhost:5000/generate_two_column_chart",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`${BASE_URL}/generate_two_column_chart`, {
+        method: "POST",
+        body: formData,
+      });
       setIsLoading2(false);
 
       if (response.ok) {
