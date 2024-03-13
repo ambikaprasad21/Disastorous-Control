@@ -19,16 +19,16 @@ function PositionProvider({ children }) {
             latitude: pos.coords.latitude,
             longitude: pos.coords.longitude,
           });
-          setIsLoading(false);
         },
         (error) => {
           console.log(error);
           setError(
             "Error getting location please check your internet connection"
           );
-          setIsLoading(false);
         }
       );
+
+      setIsLoading(false);
     }
 
     getPosition();

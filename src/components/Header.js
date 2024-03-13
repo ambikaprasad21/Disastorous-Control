@@ -20,15 +20,9 @@ const Header = () => {
   return (
     <div className={styles[`header-section`]}>
       <header className={`${styles.header} `}>
-        <Link style={{ textDecoration: "none", cursor: "pointer" }} to={"/"}>
-          <div className={styles["logo-container"]}>
-            <img
-              src="images/logo_nobg.png"
-              alt="Logo"
-              className={styles.logo}
-            />
-          </div>
-        </Link>
+        <div className={styles["logo-container"]}>
+          <img src="images/logo_nobg.png" alt="Logo" className={styles.logo} />
+        </div>
 
         <nav className={styles["nav-bar"]}>
           <ul>
