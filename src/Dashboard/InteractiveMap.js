@@ -85,7 +85,7 @@ function InteractiveMap() {
           );
 
           const res2 = await fetch(
-            `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lng}&appid=${api}`
+            `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lng}&appid=${api}`
           );
 
           const data1 = await res1.json();
