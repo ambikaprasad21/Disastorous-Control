@@ -1,7 +1,10 @@
 import { useState } from "react";
 import JSZip from "jszip";
+import { DNA } from "react-loader-spinner";
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Header from "../components/Header";
 import styles from "./FileUpload.module.css";
+import Button from "../utils/Button";
 
 const BASE_URL = "https://py-server-for-codeindroome.onrender.com";
 
@@ -96,11 +99,16 @@ function FileUpload() {
         </h1>
 
         <div className={styles["file-upload"]}>
+          {/* <label for="files">Select Image</label> */}
           <input
             type="file"
+            id="files"
             onChange={handleFileChange}
             accept=".csv"
-            disabled={isLoading1}
+            disabled={isLoading1 || isLoading2}
+            className={`${styles.file_input} ${
+              isLoading1 || isLoading2 ? styles.disable_input_file : ""
+            }`}
           />
           <div className={styles["file-upload__text"]}>
             <p>.csv files</p>
@@ -138,13 +146,25 @@ function FileUpload() {
 
         <div className={styles["canvas"]}>
           <div className={styles["combined col"]}>
-            <button
-              onClick={handleUpload}
-              className={styles.btn}
+            <Button
+              genPlot={handleUpload}
+              // className={styles.btn}
               disabled={isLoading1}
             >
-              {isLoading1 ? "Loading..." : "Combined Data Visualization"}
-            </button>
+              {isLoading1 ? "Generating..." : "Combined Data Visualization"}
+            </Button>
+            {isLoading1 && (
+              <div className={styles.loader}>
+                <DNA
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="dna-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="dna-wrapper"
+                />
+              </div>
+            )}
             {chartImage && !isLoading1 && (
               <img
                 src={chartImage}
@@ -182,15 +202,26 @@ function FileUpload() {
                   />
                 </div>
               </div>
-              <button
-                onClick={handleGenerateTwoColumnChart}
-                className={styles.btn}
+              <Button
+                genPlot={handleGenerateTwoColumnChart}
+                // className={styles.btn}
                 disabled={isLoading2}
               >
-                {isLoading2 ? "Loading..." : "Generate Two-Column Chart"}
-              </button>
+                {isLoading2 ? "Generating..." : "Generate Two-Column Chart"}
+              </Button>
             </div>
-
+            {isLoading2 && (
+              <div className={styles.loader}>
+                <DNA
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="dna-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="dna-wrapper"
+                />
+              </div>
+            )}
             {twoColumnChartImage && !isLoading2 && (
               <img
                 src={twoColumnChartImage}

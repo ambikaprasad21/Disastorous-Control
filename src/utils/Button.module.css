@@ -1,0 +1,17 @@
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  background-image: linear-gradient(to right, #00b4db, #0083b0);
+  color: white;
+  border-radius: 2rem;
+  outline: none;
+}
+
+.button.hovered {
+  background-image: linear-gradient(to right, #00ff00, #32cd32);
+  transition: none;
+  transform: translateY(-5px); /* Adjust the motion effect */
+}
