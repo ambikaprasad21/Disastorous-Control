@@ -50,8 +50,8 @@ function MapWeth({ onMapClick }) {
     <MapContainer
       center={newCenter}
       zoom={5}
-      enableHighAccuracy={true}
-      // minZoom={5}
+      // enableHighAccuracy={true}
+      minZoom={5}
       // zoomControl={false}
       style={{ height: "80vh" }}
       className={styles.map}
