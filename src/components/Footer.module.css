@@ -1,5 +1,24 @@
 .section {
+  display: flex;
   margin-top: 5rem;
   background-color: gray;
   padding: 2rem 5rem;
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.logoImg {
+  width: 100px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.title {
+  margin-top: 10px; /* Adjust as needed */
+  font-size: 18px; /* Adjust as needed */
+  font-weight: bold;
 }
