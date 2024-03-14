@@ -1,8 +1,12 @@
 .section {
   display: flex;
   margin-top: 5rem;
-  background-color: gray;
-  padding: 2rem 5rem;
+  background-color: rgb(53, 53, 53);
+  padding: 5rem 5rem;
+  justify-content: space-between;
+}
+.section li{
+  list-style: none;
 }
 .logo {
   display: flex;
@@ -19,6 +23,42 @@
 
 .title {
   margin-top: 10px; /* Adjust as needed */
-  font-size: 18px; /* Adjust as needed */
+  font-size: 2rem; /* Adjust as needed */
   font-weight: bold;
 }
+.fast{
+  /* color: white; */
+}
+
+.info{
+  display: flex;
+  gap: 18rem;
+  /* color: white; */
+}
+
+.fast ul a:link , .fast ul a:visited{
+  color: white;
+}
+.info  a:link{
+  font-size: 1.5rem;
+  color: inherit;
+  line-height: 2rem;
+  text-decoration: none;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+.contactImg{
+  width: 2.8rem ;
+  border-radius: 70%;
+
+}
+.footerHeading{
+  font-size: 1.8rem;
+  margin-bottom: 1.3rem;
+}
+.contact ul{
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+

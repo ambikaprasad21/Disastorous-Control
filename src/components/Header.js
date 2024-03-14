@@ -27,7 +27,9 @@ const Header = () => {
               alt="Logo"
               className={styles.logo}
             />
+            
           </Link>
+          <p className={styles.title}>GreenForGreen</p>
         </div>
 
         <nav className={styles["nav-bar"]}>
