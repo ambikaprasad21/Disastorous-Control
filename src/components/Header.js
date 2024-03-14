@@ -21,7 +21,13 @@ const Header = () => {
     <div className={styles[`header-section`]}>
       <header className={`${styles.header} `}>
         <div className={styles["logo-container"]}>
-          <img src="images/logo_nobg.png" alt="Logo" className={styles.logo} />
+          <Link to="/">
+            <img
+              src="images/logo_nobg.png"
+              alt="Logo"
+              className={styles.logo}
+            />
+          </Link>
         </div>
 
         <nav className={styles["nav-bar"]}>

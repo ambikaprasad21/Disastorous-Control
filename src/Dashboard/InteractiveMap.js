@@ -16,7 +16,7 @@ const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 const api = "aa44a7b33e39cc0e971f3c78ebbdcf96";
 
 function InteractiveMap() {
-  const [locError, setLocError] = useState(false);
+  const [locError, setLocError] = useState("");
   const { position, isLoading, error, setError } = usePosition();
 
   const [loadingNewPos, setLoadingNewPos] = useState(false);
@@ -59,19 +59,20 @@ function InteractiveMap() {
       async function getLocWeather() {
         setLoadingNewPos(true);
         try {
-          setLocError(false);
+          setLocError("");
 
           let lat, lng;
 
           if (clickPosition && clickPosition.length === 2) {
             // If user clicked on the map
             [lat, lng] = clickPosition;
-          }
-          // } else if (position && position.latitude && position.longitude) {
-          //   // If user's position is available
-          //   lat = position.latitude;
-          //   lng = position.longitude;
-          else {
+          } else if (isLoading) {
+            return;
+          } else if (position && position.latitude && position.longitude) {
+            // If user's position is available
+            lat = position.latitude;
+            lng = position.longitude;
+          } else {
             // Fallback to default coordinates
             [lat, lng] = [51.505, -0.09];
           }
@@ -85,7 +86,7 @@ function InteractiveMap() {
           );
 
           const res2 = await fetch(
-            `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lng}&appid=${api}`
+            `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lng}&appid=${api}`
           );
 
           const data1 = await res1.json();
@@ -119,11 +120,11 @@ function InteractiveMap() {
           }
 
           setName(data.city || data.locality || "");
-          setCountry(data.countryName);
+          setCountry(data.countryName || "");
         } catch (err) {
-          // console.log(err);
+          console.log(err);
           setMyPosition([51.505, -0.09]);
-          setLocError(true);
+          setLocError(err.message);
         } finally {
           setLoadingNewPos(false);
         }
@@ -206,8 +207,9 @@ function InteractiveMap() {
         >
           {isLoading && <h1>Loading...</h1>}
           {loadingNewPos && <h1>Loading...</h1>}
+          {!loadingNewPos && locError && <p>{locError}</p>}
 
-          {!isLoading && !loadingNewPos && (
+          {!isLoading && !loadingNewPos && !locError && (
             <>
               <h1 className={styles.city}>{`${name} ${country}`}</h1>
 
