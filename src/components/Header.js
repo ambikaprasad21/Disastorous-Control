@@ -1,9 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
+import { IonIcon } from "@ionic/react";
+import { menuOutline, closeOutline } from "ionicons";
 import styles from "./Header.module.css";
 import { useEffect, useState } from "react";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +22,9 @@ const Header = () => {
 
   return (
     <div className={styles[`header-section`]}>
-      <header className={`${styles.header} `}>
+      <header
+        className={`${styles.header} ${navOpen ? styles["nav-open"] : ""}`}
+      >
         <div className={styles["logo-container"]}>
           <Link to="/">
             <img
@@ -49,6 +54,14 @@ const Header = () => {
             </li> */}
           </ul>
         </nav>
+
+        <button
+          className={styles["btn-mobile-nav"]}
+          onClick={() => setNavOpen(true)}
+        >
+          <IonIcon icon={menuOutline} />
+          <IonIcon icon={closeOutline} />
+        </button>
       </header>
     </div>
   );
