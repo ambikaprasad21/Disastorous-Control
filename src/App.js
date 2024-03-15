@@ -12,7 +12,7 @@ function App() {
     <PositionProvider>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="data-visulization" element={<FileUpload />} />
           <Route path="chemical-calculator" element={<ChemicalCalci />}>
             <Route path="reaction-kinetics" element={<ReactionKinetics />} />
