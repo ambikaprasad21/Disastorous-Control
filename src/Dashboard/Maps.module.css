@@ -15,7 +15,7 @@
 }
 
 .bg {
-  padding: 5rem 0;
+  padding: 10rem 0;
   /* background: linear-gradient(to right, #87ca69, #a8e890); */
   clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
   background: linear-gradient(#e66465, #9198e5);
@@ -23,4 +23,16 @@
   /* background-color: orange; */
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+/* Media Query */
+
+@media (max-width: 425px) {
+  .section {
+    margin: 0 1rem;
+  }
+  .bg {
+    padding: 5rem 0;
+    clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%);
+  }
 }

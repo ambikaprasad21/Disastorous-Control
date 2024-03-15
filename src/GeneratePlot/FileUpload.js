@@ -1,22 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JSZip from "jszip";
 import { DNA } from "react-loader-spinner";
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import styles from "./FileUpload.module.css";
 import Button from "../utils/Button";
 
 const BASE_URL = "https://py-server-for-codeindroome.onrender.com";
+// const BASE_URL = "http://127.0.0.1:5000";
 
 function FileUpload() {
   const [isLoading1, setIsLoading1] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
+  const [error1, setError1] = useState("");
+  const [error2, setError2] = useState("");
   const [file, setFile] = useState(null);
   const [chartImage, setChartImage] = useState(null);
   const [describeImage, setDescribeImage] = useState(null);
   const [twoColumnChartImage, setTwoColumnChartImage] = useState(null);
   const [column1, setColumn1] = useState("");
   const [column2, setColumn2] = useState("");
+
+  // const [title, setTitle] = useState(document.title || "");
+
+  useEffect(function () {
+    document.title = "GFG | Data Visualization";
+
+    return function () {
+      document.title = "Green For Green";
+    };
+  });
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -29,6 +43,7 @@ function FileUpload() {
 
     // console.log(isLoading);
     setIsLoading1(true);
+    setError1("");
     fetch(`${BASE_URL}/upload`, {
       method: "POST",
       body: formData,
@@ -61,7 +76,10 @@ function FileUpload() {
               });
           });
       })
-      .catch((error) => console.error("Error:", error))
+      .catch((error) => {
+        setError1("There is some Error 🥲, Try again");
+        console.error("Error:", error);
+      })
       .finally(() => setIsLoading1(false));
   };
 
@@ -72,21 +90,29 @@ function FileUpload() {
     formData.append("column1", column1);
     formData.append("column2", column2);
 
-    if (column1 && column2) {
-      setIsLoading2(true);
-      const response = await fetch(`${BASE_URL}/generate_two_column_chart`, {
-        method: "POST",
-        body: formData,
-      });
-      setIsLoading2(false);
+    try {
+      if (column1 && column2) {
+        setIsLoading2(true);
+        setError2("");
+        const response = await fetch(`${BASE_URL}/generate_two_column_chart`, {
+          method: "POST",
+          body: formData,
+        });
+        // setIsLoading2(false);
 
-      if (response.ok) {
-        const blob = await response.blob();
-        console.log(blob);
-        setTwoColumnChartImage(URL.createObjectURL(blob));
+        if (response.ok) {
+          const blob = await response.blob();
+          console.log(blob);
+          setTwoColumnChartImage(URL.createObjectURL(blob));
+        }
+      } else {
+        alert("Both column names are required for a two-column chart");
       }
-    } else {
-      alert("Both column names are required for a two-column chart");
+    } catch (err) {
+      setError2("There is some Error 🥲, Try again");
+      console.log(err);
+    } finally {
+      setIsLoading2(false);
     }
   };
 
@@ -165,14 +191,16 @@ function FileUpload() {
                 />
               </div>
             )}
-            {chartImage && !isLoading1 && (
+
+            {error1 && !isLoading1 && <p className={styles.error}>{error1}</p>}
+            {chartImage && !isLoading1 && !error1 && (
               <img
                 src={chartImage}
                 alt="Colored Chart"
                 className={styles.plot}
               />
             )}
-            {describeImage && !isLoading1 && (
+            {describeImage && !isLoading1 && !error1 && (
               <img
                 src={describeImage}
                 alt="Describe Chart"
@@ -222,7 +250,9 @@ function FileUpload() {
                 />
               </div>
             )}
-            {twoColumnChartImage && !isLoading2 && (
+
+            {error2 && !isLoading2 && <p>{error2}</p>}
+            {twoColumnChartImage && !isLoading2 && !error2 && (
               <img
                 src={twoColumnChartImage}
                 alt="Two-Column Chart"
@@ -232,6 +262,7 @@ function FileUpload() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

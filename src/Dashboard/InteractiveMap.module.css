@@ -15,6 +15,9 @@
 
 .details {
   flex-basis: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   padding: 2rem 3rem;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -66,9 +69,206 @@
   position: relative;
 }
 
-/* leaflet css */
+.open-Details {
+  display: none;
+  /* background-color: #ccc; */
+  background-color: white;
+  color: green;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  outline: none;
+  border: none;
+  padding: 1rem;
+  border-radius: 50%;
+  position: relative;
+}
 
-/* Here we want to style classes that are coming from leaflet. So we want CSS Modules to give us the ACTUAL classnames, not to add some random ID to them, because then they won't match the classnames defined inside the map. The solution is to define these classes as GLOBAL */
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* Media Query */
+
+@media (max-width: 916px) {
+  .details {
+    flex-basis: 28rem;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2rem 3rem;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; */
+  }
+}
+
+@media (max-width: 660px) {
+  .section {
+    width: 95%;
+  }
+  .container {
+    /* display: flex; */
+    flex-direction: column;
+  }
+
+  .weatherInfo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+  }
+  .details {
+    padding: 2rem 5px;
+  }
+}
+
+@media (max-width: 541px) {
+  /* .section {
+    width: 98%;
+  } */
+  .label {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .label img {
+    width: 1.5rem;
+  }
+
+  .value {
+    font-size: 1.1rem;
+    flex-grow: 1;
+  }
+
+  .weatherInfo {
+    column-gap: 1rem;
+  }
+}
+
+@media (max-width: 487px) {
+  .details {
+    max-width: 100%;
+  }
+  .label {
+    font-size: 10px;
+    font-weight: 530;
+  }
+
+  .value {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 410px) {
+  .container {
+    position: relative;
+    height: 80.3vh;
+  }
+
+  .open-Details {
+    display: block;
+    z-index: 999;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .animate-details {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+
+    width: 80%;
+
+    transform: translateX(100%);
+    transition: all 0.5s ease-in;
+    border-radius: 10px;
+
+    padding: 2rem 0 2rem 1.5rem;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .show-details .animate-details {
+    z-index: 10;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+
+    transform: translateX(0%);
+  }
+
+  .weatherInfo {
+    display: flex;
+    flex-direction: column;
+    /* gap: 1px; */
+  }
+
+  .weatherInfoItem {
+    margin-bottom: 6px;
+  }
+
+  .label {
+    /* text-align: center; */
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .label img {
+    width: 2rem;
+  }
+
+  .value {
+    font-size: 1.2rem;
+    /* flex-grow: 1; */
+  }
+}
+
+@media (max-width: 375px) {
+  .city {
+    font-size: 10px;
+    font-weight: 540;
+    margin-bottom: 1rem;
+  }
+
+  .label {
+    /* text-align: center; */
+    font-size: 1rem;
+    font-weight: 530;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .label img {
+    width: 2rem;
+  }
+
+  .value {
+    font-size: 1.2rem;
+    /* flex-grow: 1; */
+  }
+}
+
+/* leaflet css */ /* Here we want to style classes that are coming from leaflet. So we want CSS Modules to give us the ACTUAL classnames,
+  not to add some random ID to them,
+  because then they won't match the classnames defined inside the map. The solution is to define these classes as GLOBAL */
 :global(.leaflet-popup .leaflet-popup-content-wrapper) {
   background-color: var(--color-dark--1);
   color: var(--color-light--2);

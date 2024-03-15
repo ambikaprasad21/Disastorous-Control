@@ -1,13 +1,16 @@
 import styles from "./InteractiveMap.module.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-import DetectClick from "../utils/DetectClick";
+// import DetectClick from "../utils/DetectClick";
 
 import React, { useEffect, useRef, useState } from "react";
-import L from "leaflet";
-import axios from "axios";
+// import L from "leaflet";
+// import axios from "axios";
 
 import { usePosition } from "../Contexts/PositionContext";
 import MapWeth from "./MapWeth";
@@ -37,6 +40,8 @@ function InteractiveMap() {
   const [pm2_5, setPm2_5] = useState(null); //Fine Particles Matter
   const [pm10, setpm10] = useState(null); //Coarse particulate matter
   const [nh3, setnh3] = useState(null); //ammonia
+
+  const [openDetial, setOpenDetail] = useState(true);
 
   // city name
   const [name, setName] = useState(null);
@@ -140,6 +145,7 @@ function InteractiveMap() {
 
     if (lat && lng) {
       setClickPosition([lat, lng]);
+      setOpenDetail(true);
       setError(null);
     }
   };
@@ -189,7 +195,11 @@ function InteractiveMap() {
       >
         Our Interactive Map Based Weather
       </motion.h1>
-      <div className={styles.container}>
+      <div
+        className={`${styles.container} ${
+          openDetial ? styles["show-details"] : ""
+        }`}
+      >
         <motion.div
           className={styles.mapContainer}
           ref={refMap}
@@ -198,7 +208,18 @@ function InteractiveMap() {
         >
           <MapWeth onMapClick={handleMapClick} />
         </motion.div>
-
+        <button
+          className={styles["open-Details"]}
+          onClick={() => {
+            console.log("clicked");
+            setOpenDetail((e) => !e);
+          }}
+        >
+          <FontAwesomeIcon
+            icon={openDetial ? faXmark : faBars}
+            className={styles.icon}
+          />
+        </button>
         <motion.div
           className={styles.details}
           ref={refdiv}
@@ -210,7 +231,7 @@ function InteractiveMap() {
           {!loadingNewPos && locError && <p>{locError}</p>}
 
           {!isLoading && !loadingNewPos && !locError && (
-            <>
+            <div className={styles["animate-details"]}>
               <h1 className={styles.city}>{`${name} ${country}`}</h1>
 
               {
@@ -372,7 +393,7 @@ function InteractiveMap() {
                   </div>
                 </div>
               }
-            </>
+            </div>
           )}
         </motion.div>
       </div>

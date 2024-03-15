@@ -1,9 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
+import { IonIcon } from "@ionic/react";
+// import { menuOutline, closeOutline } from "ionicons";
 import styles from "./Header.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,8 +23,14 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={styles[`header-section`]}>
-      <header className={`${styles.header} `}>
+    <div
+      className={`${styles["header-section"]} ${
+        navOpen ? styles["menu-open"] : ""
+      }`}
+    >
+      <header
+        className={`${styles.header} ${navOpen ? styles["nav-open"] : ""}`}
+      >
         <div className={styles["logo-container"]}>
           <Link to="/">
             <img
@@ -33,7 +44,7 @@ const Header = () => {
         </div>
 
         <nav className={styles["nav-bar"]}>
-          <ul>
+          <ul className={styles["nav-list"]}>
             <li>
               <NavLink to={"/chemical-calculator"}>Chemical Calculator</NavLink>
             </li>
@@ -51,6 +62,19 @@ const Header = () => {
             </li> */}
           </ul>
         </nav>
+
+        <button
+          className={styles["btn-mobile-nav"]}
+          onClick={() => setNavOpen((e) => !e)}
+        >
+          <p
+            className={`${styles["icon-mobile-nav"]} ${
+              navOpen ? styles.open : styles.close
+            }`}
+          >
+            <FontAwesomeIcon icon={navOpen ? faXmark : faBars} />
+          </p>
+        </button>
       </header>
     </div>
   );

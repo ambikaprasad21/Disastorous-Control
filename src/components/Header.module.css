@@ -34,15 +34,83 @@
   gap: 1rem;
   font-size: 1.6rem;
   color: green;
-
-  
 }
 .nav-bar li {
   /* background-color: white; */
   background: rgba(120, 113, 113, 0.153);
-  border-radius: 5px ;
+  border-radius: 5px;
 }
 
+.btn-mobile-nav {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  /* bydefault it must be hidden */
+  display: none;
+}
+
+.icon-mobile-nav {
+  height: 4.8rem;
+  width: 4.8rem;
+  font-size: 2rem;
+  color: green;
+  margin-top: 1.4rem;
+}
+
+@media (max-width: 660px) {
+  .btn-mobile-nav {
+    display: block;
+    z-index: 999;
+  }
+  .nav-bar {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+
+    /*transition: all 0.5s; /*by default transition is linear*/
+    transition: all 0.5s ease-in;
+
+    /* Hide navigation */
+    /* Allows no  transition at all */
+    /* display: none; */
+    /* using displya none we cannot animate the navigation */
+
+    /*  1) Hide it visually */
+    opacity: 0;
+
+    /*  2) Make it unaccessible to mouse and keyboard */
+    /* opacity set to 0 element can also be accessed by keyboard buttons */
+    pointer-events: none;
+
+    /*  3) Hide it from screen readers */
+    visibility: hidden;
+  }
+
+  .menu-open .nav-bar {
+    /* setting the opacity to 1 to make it visible */
+    /* making the main navigation visible */
+    /* flex-direction: column; */
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+
+    transform: translateX(0%);
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+  }
+}
 /* .nav-bar li {
   cursor: pointer;
 
