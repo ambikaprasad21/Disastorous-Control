@@ -53,22 +53,15 @@
 .icon-mobile-nav {
   height: 4.8rem;
   width: 4.8rem;
-  color: #333;
-}
-
-/* selecting the icon-mobile-nav class with the help of attributes */
-.icon-mobile-nav[name="close-outline"] {
-  /* initially we do not want to display the close button */
-  display: none;
-}
-
-.close {
-  display: none;
+  font-size: 2rem;
+  color: green;
+  margin-top: 1.4rem;
 }
 
 @media (max-width: 660px) {
   .btn-mobile-nav {
     display: block;
+    z-index: 999;
   }
   .nav-bar {
     background-color: white;
@@ -100,6 +93,22 @@
 
     /*  3) Hide it from screen readers */
     visibility: hidden;
+  }
+
+  .menu-open .nav-bar {
+    /* setting the opacity to 1 to make it visible */
+    /* making the main navigation visible */
+    /* flex-direction: column; */
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+
+    transform: translateX(0%);
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: column;
   }
 }
 /* .nav-bar li {

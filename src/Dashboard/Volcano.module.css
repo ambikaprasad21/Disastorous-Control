@@ -3,12 +3,12 @@
   padding: 4rem 6rem;
 
   /* glass morphism */
-  background: rgba(128, 128, 128, 0.153); /* Glass background color */
+  background: rgba(255, 255, 255, 0.1); /* Glass background color */
   backdrop-filter: blur(10px); /* Glass blur effect */
   border-radius: 10px;
   /* padding: 20px;
-    margin: 20px;
-    width: 300px; /* Adjust width as needed */
+  margin: 20px;
+  width: 300px; /* Adjust width as needed */
   max-width: 100%;
   box-shadow: 10px 10px 15px rgba(255, 255, 255, 0.4),
     0 1px 3px rgba(255, 255, 255, 0.4); /* Box shadow */
@@ -16,7 +16,7 @@
 
 .container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 2rem;
 }
@@ -24,8 +24,7 @@
 .description {
   color: white;
   flex: 1; /* This makes the description take the remaining space */
-  max-width: 50%; /* Set a maximum width of 50% */
-  position: relative;
+  max-width: 50%;
 }
 
 .description h2 {
@@ -47,30 +46,44 @@
   align-items: flex-start;
 }
 
-.quote {
-  /* color: white; */
-  margin-top: -3rem;
-}
-
-.text {
-  position: relative;
-}
-
-.last-quote {
-  position: absolute;
-  bottom: -2.5rem;
-  left: 20rem;
-  width: 5rem;
-  height: 5rem;
-}
-
 /* leaflet map */
 .map {
+  /* height: 100%; */
   border: 0px solid transparent;
   border-radius: 10px;
 }
 
-/* Here we want to style classes that are coming from leaflet. So we want CSS Modules to give us the ACTUAL classnames, not to add some random ID to them, because then they won't match the classnames defined inside the map. The solution is to define these classes as GLOBAL */
+/* Media Query */
+
+@media (max-width: 768px) {
+  .description h2 {
+    font-size: 4rem;
+    width: 100%;
+    letter-spacing: 2px;
+    margin-bottom: 5rem;
+  }
+
+  .section {
+    padding: 2rem 4rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    width: 200%;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .section {
+    padding: 2rem 2rem;
+  }
+}
+/* Here we want to style classes that are coming from leaflet. So we want CSS Modules to give us the ACTUAL classnames,
+  not to add some random ID to them,
+  because then they won't match the classnames defined inside the map. The solution is to define these classes as GLOBAL */
 :global(.leaflet-popup .leaflet-popup-content-wrapper) {
   background-color: var(--color-dark--1);
   color: var(--color-light--2);

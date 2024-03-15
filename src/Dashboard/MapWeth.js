@@ -51,7 +51,7 @@ function MapWeth({ onMapClick }) {
       center={newCenter}
       zoom={5}
       // enableHighAccuracy={true}
-      minZoom={5}
+      minZoom={3}
       // zoomControl={false}
       style={{ height: "80vh" }}
       className={styles.map}

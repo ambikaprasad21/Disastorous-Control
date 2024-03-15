@@ -118,6 +118,7 @@
 .input-and-button {
   display: flex;
   justify-content: space-between;
+
   align-items: center;
 }
 
@@ -137,4 +138,62 @@
   border: solid 1px #ccc;
   border-radius: 2px;
   outline: none;
+}
+
+/* media Query */
+
+@media (max-width: 925px) {
+  .input-and-button {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 688px) {
+  .instruction {
+    /* margin: 2rem 3rem; */
+    margin: 2rem 3rem 4rem 3rem;
+  }
+  .canvas {
+    margin: 0 3rem;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: start;
+    row-gap: 5rem;
+  }
+
+  .input-and-button {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .file-upload {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    gap: 5px;
+    /* border: dotted 2px black;
+    border-radius: 5px; */
+    margin: 0 3rem;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+  }
+
+  .input-and-button {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 540px) {
+  .instruction {
+    margin: 2rem 1rem 4rem 1rem;
+  }
+
+  .file-upload {
+    margin: 0 1rem;
+  }
+
+  .canvas {
+    margin: 0 1rem;
+  }
 }

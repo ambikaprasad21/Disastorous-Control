@@ -8,3 +8,10 @@
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+
+@media (max-width: 660px) {
+  .map {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+}

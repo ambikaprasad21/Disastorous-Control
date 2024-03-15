@@ -1,13 +1,16 @@
 import styles from "./InteractiveMap.module.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-import DetectClick from "../utils/DetectClick";
+// import DetectClick from "../utils/DetectClick";
 
 import React, { useEffect, useRef, useState } from "react";
-import L from "leaflet";
-import axios from "axios";
+// import L from "leaflet";
+// import axios from "axios";
 
 import { usePosition } from "../Contexts/PositionContext";
 import MapWeth from "./MapWeth";
@@ -37,6 +40,8 @@ function InteractiveMap() {
   const [pm2_5, setPm2_5] = useState(null); //Fine Particles Matter
   const [pm10, setpm10] = useState(null); //Coarse particulate matter
   const [nh3, setnh3] = useState(null); //ammonia
+
+  const [openDetial, setOpenDetail] = useState(false);
 
   // city name
   const [name, setName] = useState(null);
@@ -180,7 +185,11 @@ function InteractiveMap() {
   // if (!position) return;
 
   return (
-    <motion.div className={styles.section}>
+    <motion.div
+      className={`${styles.section} ${
+        openDetial ? styles["show-details"] : ""
+      }`}
+    >
       <motion.h1
         ref={refh1}
         animate={controls}
@@ -198,7 +207,12 @@ function InteractiveMap() {
         >
           <MapWeth onMapClick={handleMapClick} />
         </motion.div>
-
+        <button
+          className={styles["open-Details"]}
+          onClick={() => setOpenDetail((e) => !e)}
+        >
+          <FontAwesomeIcon icon={openDetial ? faBars : faXmark} />
+        </button>
         <motion.div
           className={styles.details}
           ref={refdiv}

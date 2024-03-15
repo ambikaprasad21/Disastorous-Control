@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JSZip from "jszip";
 import { DNA } from "react-loader-spinner";
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -17,6 +17,16 @@ function FileUpload() {
   const [twoColumnChartImage, setTwoColumnChartImage] = useState(null);
   const [column1, setColumn1] = useState("");
   const [column2, setColumn2] = useState("");
+
+  // const [title, setTitle] = useState(document.title || "");
+
+  useEffect(function () {
+    document.title = "GFG | Data Visualization";
+
+    return function () {
+      document.title = "Green For Green";
+    };
+  });
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
