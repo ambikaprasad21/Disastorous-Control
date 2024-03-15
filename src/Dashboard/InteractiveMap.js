@@ -41,7 +41,7 @@ function InteractiveMap() {
   const [pm10, setpm10] = useState(null); //Coarse particulate matter
   const [nh3, setnh3] = useState(null); //ammonia
 
-  const [openDetial, setOpenDetail] = useState(false);
+  const [openDetial, setOpenDetail] = useState(true);
 
   // city name
   const [name, setName] = useState(null);
@@ -145,6 +145,7 @@ function InteractiveMap() {
 
     if (lat && lng) {
       setClickPosition([lat, lng]);
+      setOpenDetail(true);
       setError(null);
     }
   };
@@ -185,11 +186,7 @@ function InteractiveMap() {
   // if (!position) return;
 
   return (
-    <motion.div
-      className={`${styles.section} ${
-        openDetial ? styles["show-details"] : ""
-      }`}
-    >
+    <motion.div className={styles.section}>
       <motion.h1
         ref={refh1}
         animate={controls}
@@ -198,7 +195,11 @@ function InteractiveMap() {
       >
         Our Interactive Map Based Weather
       </motion.h1>
-      <div className={styles.container}>
+      <div
+        className={`${styles.container} ${
+          openDetial ? styles["show-details"] : ""
+        }`}
+      >
         <motion.div
           className={styles.mapContainer}
           ref={refMap}
@@ -211,7 +212,10 @@ function InteractiveMap() {
           className={styles["open-Details"]}
           onClick={() => setOpenDetail((e) => !e)}
         >
-          <FontAwesomeIcon icon={openDetial ? faBars : faXmark} />
+          <FontAwesomeIcon
+            icon={openDetial ? faXmark : faBars}
+            className={styles.icon}
+          />
         </button>
         <motion.div
           className={styles.details}
