@@ -210,7 +210,10 @@ function InteractiveMap() {
         </motion.div>
         <button
           className={styles["open-Details"]}
-          onClick={() => setOpenDetail((e) => !e)}
+          onClick={() => {
+            console.log("clicked");
+            setOpenDetail((e) => !e);
+          }}
         >
           <FontAwesomeIcon
             icon={openDetial ? faXmark : faBars}
@@ -228,7 +231,7 @@ function InteractiveMap() {
           {!loadingNewPos && locError && <p>{locError}</p>}
 
           {!isLoading && !loadingNewPos && !locError && (
-            <>
+            <div className={styles["animate-details"]}>
               <h1 className={styles.city}>{`${name} ${country}`}</h1>
 
               {
@@ -390,7 +393,7 @@ function InteractiveMap() {
                   </div>
                 </div>
               }
-            </>
+            </div>
           )}
         </motion.div>
       </div>

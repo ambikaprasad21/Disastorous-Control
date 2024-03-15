@@ -174,7 +174,7 @@
     right: 2rem;
   }
 
-  .details {
+  .animate-details {
     position: absolute;
     top: 0;
     right: 0;
@@ -188,15 +188,19 @@
 
     width: 80%;
 
-    transform: translateX(80%);
+    transform: translateX(100%);
     transition: all 0.5s ease-in;
+    border-radius: 10px;
+
+    padding: 2rem 0 2rem 1.5rem;
 
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    z-index: 10;
   }
 
-  .show-details .details {
+  .show-details .animate-details {
     z-index: 10;
     opacity: 1;
     pointer-events: auto;
