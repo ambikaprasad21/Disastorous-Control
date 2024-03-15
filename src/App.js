@@ -6,6 +6,7 @@ import { PositionProvider } from "./Contexts/PositionContext";
 import ChemicalCalci from "./ChemicalCalculator/ChemicalCalci";
 import ReactionKinetics from "./ChemicalCalculator/ReactionKinetics";
 import Market from "./Ecommerce/Market";
+import Assistant from "./Assistant/Assistant";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               element={<p>Mass Energy Balance</p>}
             />
           </Route>
+          <Route path="ai-assistant" element={<Assistant />} />
           {/* <Route path="chemical-market" element={<Market />} /> */}
         </Routes>
       </BrowserRouter>

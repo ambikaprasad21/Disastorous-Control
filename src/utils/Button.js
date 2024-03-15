@@ -1,12 +1,12 @@
 import { useState } from "react";
 import styles from "./Button.module.css";
 
-function Button({ genPlot, isLoading, children }) {
+function Button({ handleInput, isLoading, children }) {
   const [hovered, setHovered] = useState(false);
   return (
     <button
       className={`${styles.button} ${hovered ? styles.hovered : ""}`}
-      onClick={genPlot}
+      onClick={handleInput}
       disabled={isLoading}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
