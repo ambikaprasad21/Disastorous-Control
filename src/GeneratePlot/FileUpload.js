@@ -3,6 +3,7 @@ import JSZip from "jszip";
 import { DNA } from "react-loader-spinner";
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import styles from "./FileUpload.module.css";
 import Button from "../utils/Button";
 
@@ -242,6 +243,7 @@ function FileUpload() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

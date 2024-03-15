@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import styles from "./ChemicalCalci.module.css";
 import { useEffect } from "react";
 
@@ -104,6 +105,7 @@ function ChemicalCalci() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
