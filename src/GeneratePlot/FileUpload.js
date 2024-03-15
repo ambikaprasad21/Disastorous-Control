@@ -7,8 +7,8 @@ import Footer from "../components/Footer";
 import styles from "./FileUpload.module.css";
 import Button from "../utils/Button";
 
-// const BASE_URL = "https://py-server-for-codeindroome.onrender.com";
-const BASE_URL = "http://127.0.0.1:5000";
+const BASE_URL = "https://py-server-for-codeindroome.onrender.com";
+// const BASE_URL = "http://127.0.0.1:5000";
 
 function FileUpload() {
   const [isLoading1, setIsLoading1] = useState(false);
@@ -77,7 +77,7 @@ function FileUpload() {
           });
       })
       .catch((error) => {
-        setError1("There is some Error 🥲, Try agan");
+        setError1("There is some Error 🥲, Try again");
         console.error("Error:", error);
       })
       .finally(() => setIsLoading1(false));
@@ -109,7 +109,7 @@ function FileUpload() {
         alert("Both column names are required for a two-column chart");
       }
     } catch (err) {
-      setError2("There is some Error 🥲, Try agan");
+      setError2("There is some Error 🥲, Try again");
       console.log(err);
     } finally {
       setIsLoading2(false);
@@ -192,7 +192,7 @@ function FileUpload() {
               </div>
             )}
 
-            {error1 && !isLoading1 && <p>{error1}</p>}
+            {error1 && !isLoading1 && <p className={styles.error}>{error1}</p>}
             {chartImage && !isLoading1 && !error1 && (
               <img
                 src={chartImage}
