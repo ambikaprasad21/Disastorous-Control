@@ -24,6 +24,10 @@ function FileUpload() {
 
   // const [title, setTitle] = useState(document.title || "");
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(function () {
     document.title = "GFG | Data Visualization";
 
@@ -173,7 +177,7 @@ function FileUpload() {
         <div className={styles["canvas"]}>
           <div className={styles["combined col"]}>
             <Button
-              genPlot={handleUpload}
+              handleInput={handleUpload}
               // className={styles.btn}
               disabled={isLoading1}
             >
@@ -231,7 +235,7 @@ function FileUpload() {
                 </div>
               </div>
               <Button
-                genPlot={handleGenerateTwoColumnChart}
+                handleInput={handleGenerateTwoColumnChart}
                 // className={styles.btn}
                 disabled={isLoading2}
               >

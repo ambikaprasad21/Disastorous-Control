@@ -6,6 +6,9 @@ import { PositionProvider } from "./Contexts/PositionContext";
 import ChemicalCalci from "./ChemicalCalculator/ChemicalCalci";
 import ReactionKinetics from "./ChemicalCalculator/ReactionKinetics";
 import Market from "./Ecommerce/Market";
+
+
+
 import RateConstant from "./ReactionCalculator/RateConstant";
 import TotalTime from "./ReactionCalculator/TotalTime";
 import HalfLife from "./ReactionCalculator/HalfLife";
@@ -22,6 +25,8 @@ import Isochoric from "./Thermodynamic calculator/isochoric";
 import Isothermal from "./Thermodynamic calculator/isothermal";
 import Isobaric from "./Thermodynamic calculator/isobaric";
 import Adiabatic from "./Thermodynamic calculator/adiabatic";
+import Assistant from "./Assistant/Assistant";
+
 
 function App() {
   return (
@@ -76,6 +81,7 @@ function App() {
               element={<p>Mass Energy Balance</p>}
             />
           </Route>
+          <Route path="ai-assistant" element={<Assistant />} />
           {/* <Route path="chemical-market" element={<Market />} /> */}
         </Routes>
       </BrowserRouter>

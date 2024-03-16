@@ -16,7 +16,8 @@ import { usePosition } from "../Contexts/PositionContext";
 import MapWeth from "./MapWeth";
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
-const api = "aa44a7b33e39cc0e971f3c78ebbdcf96";
+// const api = "aa44a7b33e39cc0e971f3c78ebbdcf96";
+const api = process.env.REACT_APP_weather_api;
 
 function InteractiveMap() {
   const [locError, setLocError] = useState("");
