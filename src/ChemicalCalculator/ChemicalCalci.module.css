@@ -1,19 +1,51 @@
 .section {
-  margin-top: 20rem;
+  
   display: flex;
   gap: 5rem;
 }
 
+.heading{
+  margin-top: 15rem;
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
 .options {
+  color: black;
   width: 25%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   font-size: 2rem;
-  background-color: orange;
   padding: 3rem 4rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
+}
+
+.options a{
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.options a:link{
+  background-image: linear-gradient(to right , #C5EBAA, #A5DD9B);
+  padding: 1rem 1.2rem;
+  border-radius: 5px;
+  display: block;
+  color: inherit;
+  transition: all 5000;
+}
+
+.options a:hover{
+  background-image: linear-gradient(to right, #D5F0C1, #AAD9BB);
+  color: white;
+}
+
+.options a:global(.active){
+  background-image: linear-gradient(to right, green, green);
+  color: white;
+
 }
 
 .calci-bg {
@@ -27,4 +59,70 @@
 }
 
 .calci-area {
+}
+
+.ai{
+  background-color: green;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 5rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.ai-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+@media(max-width: 1040px){
+.section{
+  gap: 2rem;
+}
+
+.options{
+  padding: 1.5rem 2rem;
+}
+}
+
+@media(max-width: 890px){
+  .section{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .options{
+    flex-direction: row;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .calci-bg{
+    width: 90%;
+    padding-bottom: 4rem;
+  }
+}
+
+@media(max-width: 400px){
+  /* .section{
+    font-size: 50%;
+  }
+
+  .heading{
+    font-size: 50%;
+  } */
+
+  .options{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

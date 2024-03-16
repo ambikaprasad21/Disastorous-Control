@@ -14,12 +14,44 @@
 }
 .secondaryH2{
     margin-bottom: 2rem;
+    padding-left: 2rem;
 }
 .option-calci{
     display: flex;
-    gap: 2rem;
+    align-items: flex-start;
+    
+    gap: 2.5rem;
     border-radius: 1.2rem;
     border: 1px solid black;
     padding: 1rem 1.5rem;
     margin-left: 1rem;
 }
+
+.option a{
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+.option button{
+    border: none;
+    outline: none;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+}
+
+
+@media(max-width: 400px){
+    
+    .option{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+    }
+  
+    .option-calci{
+      flex-direction: column;
+    }
+
+
+  }

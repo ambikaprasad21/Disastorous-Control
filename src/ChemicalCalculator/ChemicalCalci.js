@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styles from "./ChemicalCalci.module.css";
@@ -15,19 +15,21 @@ function ChemicalCalci() {
   return (
     <>
       <Header />
+      <h1 className={styles.heading}>Chemical Calculator</h1>
       <div className={styles.section}>
+        
         <div className={styles.options}>
-          <Link
+          <NavLink
             to={"reaction-kinetics"}
             style={{
               cursor: "pointer",
               textDecoration: "none",
-              color: "inherit",
+              
             }}
           >
             Reaction kinetics
-          </Link>
-          <Link
+          </NavLink>
+          {/* <Link
             to={"distillaion"}
             style={{
               cursor: "pointer",
@@ -36,58 +38,58 @@ function ChemicalCalci() {
             }}
           >
             Distillaion
-          </Link>
-          <Link
+          </Link> */}
+          <NavLink
             to={"mass-transfer"}
             style={{
               cursor: "pointer",
               textDecoration: "none",
-              color: "inherit",
+              
             }}
           >
             Mass transfer
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to={"heat-transfter"}
             style={{
               cursor: "pointer",
               textDecoration: "none",
-              color: "inherit",
+              
             }}
           >
             Heat Transfer
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to={"thermodynamics"}
             style={{
               cursor: "pointer",
               textDecoration: "none",
-              color: "inherit",
+              
             }}
           >
             Thermodynamics
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to={"fluid-flow-calculations"}
             style={{
               cursor: "pointer",
               textDecoration: "none",
-              color: "inherit",
+              
             }}
           >
-            Fluid Flow Calculations
-          </Link>
-          <Link
+            Fluid Flow
+          </NavLink>
+          <NavLink
             to={"reactor-design"}
             style={{
               cursor: "pointer",
               textDecoration: "none",
-              color: "inherit",
+              
             }}
           >
             Reactor Design
-          </Link>
-          <Link
+          </NavLink>
+          {/* <Link
             to={"mass-energy-balance"}
             style={{
               cursor: "pointer",
@@ -96,7 +98,7 @@ function ChemicalCalci() {
             }}
           >
             Mass Energy Balance
-          </Link>
+          </Link> */}
         </div>
         <div className={styles["calci-bg"]}>
           <div className={styles["calci-area"]}>
@@ -104,6 +106,7 @@ function ChemicalCalci() {
             <Outlet />
           </div>
         </div>
+        <div className={styles.ai}><Link to='/ai-assistant' style={{textDecoration: "none", cursor: "pointer" , color: "inherit"}} className={styles['ai-text']}>Ask AI</Link></div>
       </div>
       <Footer />
     </>
