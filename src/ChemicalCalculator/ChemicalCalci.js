@@ -38,7 +38,7 @@ function ChemicalCalci() {
             Distillaion
           </Link>
           <Link
-            to={"mass-transfe"}
+            to={"mass-transfer"}
             style={{
               cursor: "pointer",
               textDecoration: "none",
@@ -100,7 +100,7 @@ function ChemicalCalci() {
         </div>
         <div className={styles["calci-bg"]}>
           <div className={styles["calci-area"]}>
-            <p>Select a Calculator</p>
+          
             <Outlet />
           </div>
         </div>
