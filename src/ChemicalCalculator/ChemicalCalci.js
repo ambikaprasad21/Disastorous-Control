@@ -27,7 +27,7 @@ function ChemicalCalci() {
           >
             Reaction kinetics
           </Link>
-          <Link
+          {/* <Link
             to={"distillaion"}
             style={{
               cursor: "pointer",
@@ -36,7 +36,7 @@ function ChemicalCalci() {
             }}
           >
             Distillaion
-          </Link>
+          </Link> */}
           <Link
             to={"mass-transfer"}
             style={{
@@ -87,7 +87,7 @@ function ChemicalCalci() {
           >
             Reactor Design
           </Link>
-          <Link
+          {/* <Link
             to={"mass-energy-balance"}
             style={{
               cursor: "pointer",
@@ -96,11 +96,10 @@ function ChemicalCalci() {
             }}
           >
             Mass Energy Balance
-          </Link>
+          </Link> */}
         </div>
         <div className={styles["calci-bg"]}>
           <div className={styles["calci-area"]}>
-          
             <Outlet />
           </div>
         </div>

@@ -1,24 +1,18 @@
 import { useState } from "react";
-import styles from "./HalfLife.module.css";
+import styles from "./SpaceTimeCSTR.module.css";
 
-function HalfLife() {
+function SpaceTimeCSTR() {
   const [order, setorder] = useState(0);
   const [initconcen, setiniconcen] = useState(0);
   const [rateconstant, setrateconstant] = useState(0);
+  const [Conversion, setConversion] = useState(0);
   const [answer, setanswer] = useState(0);
 
   function handleSolve() {
-    if (+order === 1) {
-      const thalf = 0.693 / rateconstant;
-      setanswer(thalf.toFixed(2));
-    } else {
-      const first = 2 ** (order - 1) - 1;
-      const second = initconcen ** (1 - order);
-      const third = rateconstant * (order - 1);
-      const thalf = (first * second) / third;
-
-      setanswer(thalf);
-    }
+    const tau =
+      (initconcen * Conversion) /
+      (rateconstant * initconcen ** order * (1 - initconcen) ** order);
+    setanswer(tau);
   }
 
   return (
@@ -44,6 +38,15 @@ function HalfLife() {
         </div>
 
         <div>
+          <label>Conversion (units)</label>
+          <input
+            type="number"
+            value={Conversion}
+            onChange={(e) => setConversion(e.target.value)}
+          ></input>
+        </div>
+
+        <div>
           <label>Rate constant (units)</label>
           <input
             type="number"
@@ -57,4 +60,4 @@ function HalfLife() {
     </div>
   );
 }
-export default HalfLife;
+export default SpaceTimeCSTR;
