@@ -1,11 +1,27 @@
 import { useState } from "react";
 import { DNA } from "react-loader-spinner";
 import Tesseract from "tesseract.js";
+import { MathJax, MathJaxContext } from "better-react-mathjax";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import styles from "./Assistant.module.css";
 import Button from "../utils/Button";
+
+const config = {
+  loader: { load: ["[tex]/html"] },
+  tex: {
+    packages: { "[+]": ["html"] },
+    inlineMath: [
+      ["$", "$"],
+      ["\\(", "\\)"],
+    ],
+    displayMath: [
+      ["$$", "$$"],
+      ["\\[", "\\]"],
+    ],
+  },
+};
 
 function Assistant() {
   const [image, setImage] = useState(null);
@@ -13,13 +29,10 @@ function Assistant() {
 
   const [isLoadingText, setIsLoadingText] = useState(false);
   const [isLoadingAns, setIsLoadingAns] = useState(false);
-  const [answer, setAswer] = useState("");
+  const [answer, setAswer] = useState(null);
 
   const apiKey = process.env.REACT_APP_openai_api;
   const apiUrl = "https://api.openai.com/v1/chat/completions";
-
-  //   const apiUrl =
-  //     "https://api.openai.com/v1/engines/text-davinci-002/completions";
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -42,8 +55,8 @@ function Assistant() {
 
   async function handleGenerateSolution() {
     try {
-      console.log(apiKey);
       setIsLoadingAns(true);
+      setAswer(null);
 
       // Make a request to OpenAI API to generate solution
       const response = await fetch(apiUrl, {
@@ -55,20 +68,28 @@ function Assistant() {
 
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
-          prompt: imageText,
-          max_tokens: 150,
+          messages: [
+            {
+              role: "system",
+              content:
+                "Provide helpful solution to the engineering numerical problems",
+            },
+            { role: "user", content: imageText },
+          ],
+          // prompt: imageText,
+          max_tokens: 1000,
         }),
       });
 
       const data = await response.json();
       console.log(data);
-      //   const generatedSolution = data.choices[0].text.trim();
+      console.log(data.choices[0].message.content.trim());
+      const generatedSolution = data.choices[0].message.content;
 
-      // Convert the text solution into an image
-      // Here you would use a library or service to render text as an image
-
-      // For demonstration, we'll set the text as the image text
-      // setImageText(generatedSolution);
+      // setAswer(
+      //   `data:text/plain;charset=utf-8,${encodeURIComponent(generatedSolution)}`
+      // );
+      setAswer(generatedSolution);
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -91,7 +112,7 @@ function Assistant() {
     <>
       <Header />
       <div className={styles.container}>
-        <h1>Ask Question From AI</h1>
+        <h1 className={styles.containerhead}>Ask Question From AI</h1>
 
         <div className={styles.alldiv}>
           <p className={styles.note}>
@@ -142,11 +163,11 @@ function Assistant() {
             )}
           </div>
 
-          {!answer && (
+          {/* {!answer && (
             <div>
               <p>Answer Screen</p>
             </div>
-          )}
+          )} */}
 
           {!answer && isLoadingAns && (
             <DNA
@@ -161,7 +182,30 @@ function Assistant() {
 
           {answer && (
             <div>
-              <p>Answer</p>
+              {/* <img src={answer} alt="answer" /> */}
+              {/* <p>{answer}</p> */}
+              {/* <MathJaxContext
+                config={{
+                  displayAlign: "center",
+                  displayIndent: "2em",
+                  tex: {
+                    packages: ["base", "ams"],
+                    tags: "ams",
+                  },
+                }}
+              >
+                <MathJax>{answer}</MathJax>
+              </MathJaxContext> */}
+
+              <h1 className={styles.solheading}>Solution:</h1>
+
+              {answer.split("\n").map((line, index) => (
+                <div key={index} className={styles.answer}>
+                  <MathJaxContext config={config}>
+                    <MathJax>{line}</MathJax>
+                  </MathJaxContext>
+                </div>
+              ))}
             </div>
           )}
           <div>
