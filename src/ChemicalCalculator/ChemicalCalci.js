@@ -108,6 +108,7 @@ function ChemicalCalci() {
         </div>
         <div className={styles.ai}><Link to='/ai-assistant' style={{textDecoration: "none", cursor: "pointer" , color: "inherit"}} className={styles['ai-text']}>Ask AI</Link></div>
       </div>
+      <button></button>
       <Footer />
     </>
   );
