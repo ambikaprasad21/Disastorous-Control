@@ -35,8 +35,8 @@
   font-size: 1.6rem;
   color: green;
 }
+
 .nav-bar li {
-  /* background-color: white; */
   background: rgba(120, 113, 113, 0.153);
   border-radius: 5px;
 }
@@ -156,7 +156,6 @@
 .nav-bar a:link,
 .nav-bar a:visited {
   padding: 1.5rem 2.5rem;
-
   display: block;
   color: inherit;
   text-decoration: none;

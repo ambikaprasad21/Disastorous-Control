@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styles from "./RateConstant.module.css";
 
-function RateConstant() {
-  const [arrhanius, setArrhanius] = useState(0);
+
+function RateConstant(){
+  
+   const [arrhanius, setArrhanius] = useState(0);
   const [activation, setActivation] = useState(0);
   const [temp, setTemp] = useState(0);
   const [answer, setanswer] = useState("");
@@ -25,41 +27,33 @@ function RateConstant() {
     setanswer(k);
   }
 
-  return (
-    <div className={styles.container}>
-      <h1>please enter</h1>
-      <div className={styles.inputs}>
-        <div>
-          <label>Arrhenius Constant (units)</label>
-          <input
-            type="number"
-            value={arrhanius}
-            onChange={(e) => setArrhanius(e.target.value)}
-          />
-        </div>
+    return(
+     <div className={styles.container}>
+         <h1>Please Enter</h1>
+         <div className={styles.inputs}>
+            <div className={styles['label-input']}>
+            <label>Arrhenius Constant (units)</label>
+            <input type="number"></input>
+            </div>
 
-        <div>
-          <label>Activation Energy (units)</label>
-          <input
-            type="number"
-            value={activation}
-            onChange={(e) => setActivation(e.target.value)}
-          />
-        </div>
+            <div className={styles['label-input']}>
+            <label>Activation Energy (units)</label>
+            <input type="number"></input>
+            </div>
 
-        <div>
-          <label>Temperature (units)</label>
-          <input
-            type="number"
-            value={temp}
-            onChange={(e) => setTemp(e.target.value)}
-          />
-        </div>
-      </div>
-      {answer && <p>{answer}</p>}
-      <button onClick={handleSolve}>Calculate</button>
-    </div>
-  );
+            <div className={styles['label-input']}>
+            <label>Temperature (units)</label>
+            <input type ="number"></input>
+            </div>
+           
+            
+            
+         </div>
+     </div>
+
+
+    );
+
 }
 
 export default RateConstant;
