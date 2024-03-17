@@ -43,7 +43,7 @@ function Assistant() {
       if (window.innerWidth <= 330) {
         setCols(30);
       } else if (window.innerWidth <= 655) {
-        setCols(40);
+        setCols(35);
       } else if (window.innerWidth <= 750) {
         setCols(60);
       } else if (window.innerWidth <= 1030) {
