@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./SpaceTimeCSTR.module.css";
+import ButtonCalci from "../utils/ButtonCalci";
 
 function SpaceTimeCSTR() {
-  const [order, setorder] = useState(0);
-  const [initconcen, setiniconcen] = useState(0);
-  const [rateconstant, setrateconstant] = useState(0);
-  const [Conversion, setConversion] = useState(0);
-  const [answer, setanswer] = useState(0);
+  const [order, setorder] = useState(null);
+  const [initconcen, setiniconcen] = useState(null);
+  const [rateconstant, setrateconstant] = useState(null);
+  const [Conversion, setConversion] = useState(null);
+  const [answer, setanswer] = useState("");
 
   function handleSolve() {
     const tau =
@@ -17,9 +18,9 @@ function SpaceTimeCSTR() {
 
   return (
     <div className={styles.container}>
-      <h1>please enter</h1>
+      <h1>Enter Values</h1>
       <div className={styles.inputs}>
-        <div>
+        <div className={styles["label-input"]}>
           <label>Order of reaction (units)</label>
           <input
             type="number"
@@ -28,7 +29,7 @@ function SpaceTimeCSTR() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Initial concentration (units)</label>
           <input
             type="number"
@@ -37,7 +38,7 @@ function SpaceTimeCSTR() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Conversion (units)</label>
           <input
             type="number"
@@ -46,7 +47,7 @@ function SpaceTimeCSTR() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Rate constant (units)</label>
           <input
             type="number"
@@ -55,8 +56,10 @@ function SpaceTimeCSTR() {
           ></input>
         </div>
       </div>
-      {answer && <p className={styles.answer}>{answer} </p>}
-      <button onClick={handleSolve}>Calculate</button>
+      <div className={styles["btn-ans"]}>
+        <ButtonCalci handleSolve={handleSolve} />
+        {answer && <p>{answer}</p>}
+      </div>
     </div>
   );
 }

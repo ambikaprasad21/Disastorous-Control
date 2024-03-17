@@ -1,57 +1,70 @@
-.primaryH1{
-    /* display: inline-block; */
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-    font-size: 3rem;
+.primaryH1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  font-size: 3rem;
 }
-.option{
-    display: flex;
-    flex-direction: column;
-    width: 18rem;
-    gap: 2rem;
-    
+.option {
+  display: flex;
+  flex-direction: column;
+  width: 18rem;
+  gap: 2rem;
 }
-.secondaryH2{
-    margin-bottom: 2rem;
-    padding-left: 2rem;
+.secondaryH2 {
+  margin-bottom: 2rem;
+  padding-left: 2rem;
 }
-.option-calci{
-    display: flex;
-    align-items: flex-start;
-    
-    gap: 2.5rem;
-    border-radius: 1.2rem;
-    border: 1px solid black;
-    padding: 1rem 1.5rem;
-    margin-left: 1rem;
+.option-calci {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 2.5rem;
+  border-radius: 1.2rem;
+  border: 1px solid black;
+  padding: 1rem 1.5rem;
+  margin-left: 1rem;
 }
 
-.option a{
-    text-decoration: none;
-    cursor: pointer;
-    color: inherit;
+.option a {
+  text-decoration: none;
+
+  color: inherit;
 }
 
-.option button{
-    border: none;
-    outline: none;
-    padding: 1rem 1.5rem;
-    border-radius: 5px;
+.option button {
+  border: none;
+  outline: none;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
 }
 
+.option button:hover {
+  background-color: #c7c8cc;
+}
 
-@media(max-width: 400px){
-    
-    .option{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        width: 100%;
-    }
-  
-    .option-calci{
-      flex-direction: column;
-    }
+.option a:global(.active) {
+  color: white;
+}
 
+.active {
+  background-color: #c7c8cc;
+}
 
+@media (max-width: 600px) {
+  .primaryH1 {
+    font-size: 2rem;
   }
+
+  .secondaryH2 {
+    font-size: 1.2rem;
+  }
+  .option {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  .option-calci {
+    flex-direction: column;
+  }
+}

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./EquimolarDiffusion.module.css";
+import ButtonCalci from "../utils/ButtonCalci";
 
 function EquimolarDiffusion() {
-  const [diffusivity, setdiffusivity] = useState(0);
-  const [concentrationZ1, setconcentrationZ1] = useState(0);
-  const [concentrationZ2, setconcentrationZ2] = useState(0);
-  const [distance, setdistance] = useState(0);
-  const [answer, setanswer] = useState(0);
+  const [diffusivity, setdiffusivity] = useState(null);
+  const [concentrationZ1, setconcentrationZ1] = useState(null);
+  const [concentrationZ2, setconcentrationZ2] = useState(null);
+  const [distance, setdistance] = useState(null);
+  const [answer, setanswer] = useState("");
 
   function handleSolve() {
     const flux = (diffusivity / distance) * (concentrationZ1 - concentrationZ2);
@@ -15,9 +16,9 @@ function EquimolarDiffusion() {
 
   return (
     <div className={styles.container}>
-      <h1>please enter</h1>
+      <h1>Enter Values</h1>
       <div className={styles.inputs}>
-        <div>
+        <div className={styles["label-input"]}>
           <label>Diffusivity (units)</label>
           <input
             type="number"
@@ -26,7 +27,7 @@ function EquimolarDiffusion() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Concentration at Z1 (units)</label>
           <input
             type="number"
@@ -35,7 +36,7 @@ function EquimolarDiffusion() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Distance (units)</label>
           <input
             type="number"
@@ -44,7 +45,7 @@ function EquimolarDiffusion() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Concentration at Z2 (units)</label>
           <input
             type="number"
@@ -53,8 +54,10 @@ function EquimolarDiffusion() {
           ></input>
         </div>
       </div>
-      {answer && <p className={styles.answer}>{answer}</p>}
-      <button onClick={handleSolve}>Calculate</button>
+      <div className={styles["btn-ans"]}>
+        <ButtonCalci handleSolve={handleSolve} />
+        {answer && <p>{answer}</p>}
+      </div>
     </div>
   );
 }

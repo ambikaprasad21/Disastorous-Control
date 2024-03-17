@@ -5,12 +5,10 @@ import FileUpload from "./GeneratePlot/FileUpload";
 import { PositionProvider } from "./Contexts/PositionContext";
 import ChemicalCalci from "./ChemicalCalculator/ChemicalCalci";
 import ReactionKinetics from "./ChemicalCalculator/ReactionKinetics";
-import Market from "./Ecommerce/Market";
 
 import RateConstant from "./ReactionCalculator/RateConstant";
 import TotalTime from "./ReactionCalculator/TotalTime";
 import HalfLife from "./ReactionCalculator/HalfLife";
-// import Distillation from "./ChemicalCalculator/Distillation";
 import MolarFlux from "./MassTransferCalculator/MolarFlux";
 import EquimolarDiffusion from "./MassTransferCalculator/EquimolarDiffusion";
 import MassTransfer from "./ChemicalCalculator/MassTransfer";
@@ -19,7 +17,7 @@ import Convection from "./Heat Transfer Calculator/convection";
 import Radiation from "./Heat Transfer Calculator/radiation";
 import HeatTransfer from "./ChemicalCalculator/HeatTransfer";
 import Thermodynamics from "./ChemicalCalculator/Thermodynamics";
-// import FluidFlow from "./ChemicalCalculator/FluidFLow";
+
 import Isochoric from "./ThermodynamicCalculator/Isochoric";
 import Isothermal from "./ThermodynamicCalculator/Isothermal";
 import Isobaric from "./ThermodynamicCalculator/Isobaric";
@@ -47,12 +45,6 @@ function App() {
               <Route path="half-life" element={<HalfLife />} />
               <Route path="time-taken" element={<TotalTime />} />
             </Route>
-
-            {/* <Route path="distillaion" element={<Distillation/>}>
-              <Route path="reyleigh-equation" element = {<p>Reyleigh</p>} />
-              <Route path="number-of-plates" element = {<p>plates</p>} />
-           
-            </Route> */}
 
             <Route path="mass-transfer" element={<MassTransfer />}>
               <Route path="molar-flux" element={<MolarFlux />} />
@@ -85,14 +77,8 @@ function App() {
               <Route path="Space-Time-CSTR" element={<SpaceTimeCSTR />} />
               <Route path="Space-Time-PFR" element={<SpaceTimePFR />} />
             </Route>
-
-            <Route
-              path="mass-energy-balance"
-              element={<p>Mass Energy Balance</p>}
-            />
           </Route>
           <Route path="ai-assistant" element={<Assistant />} />
-          {/* <Route path="chemical-market" element={<Market />} /> */}
         </Routes>
       </BrowserRouter>
     </PositionProvider>

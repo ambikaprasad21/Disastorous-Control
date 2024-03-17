@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./convection.module.css";
+import ButtonCalci from "../utils/ButtonCalci";
 
 function Convection() {
-  const [coefficient, setcoefficient] = useState(0);
-  const [area, setarea] = useState(0);
-  const [wallTemperature, setwallTemperature] = useState(0);
-  const [bulkTemperature, setbulkTemperature] = useState(0);
-  const [answer, setanswer] = useState(0);
+  const [coefficient, setcoefficient] = useState(null);
+  const [area, setarea] = useState(null);
+  const [wallTemperature, setwallTemperature] = useState(null);
+  const [bulkTemperature, setbulkTemperature] = useState(null);
+  const [answer, setanswer] = useState("");
 
   function handleSolve() {
     const energy = coefficient * area * (wallTemperature - bulkTemperature);
@@ -15,9 +16,9 @@ function Convection() {
 
   return (
     <div className={styles.container}>
-      <h1>please enter</h1>
+      <h1>Enter Values</h1>
       <div className={styles.inputs}>
-        <div>
+        <div className={styles["label-input"]}>
           <label>Heat transfer coefficient (units)</label>
           <input
             type="number"
@@ -26,7 +27,7 @@ function Convection() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Area normal (units)</label>
           <input
             type="number"
@@ -35,7 +36,7 @@ function Convection() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Wall temperature (units)</label>
           <input
             type="number"
@@ -44,7 +45,7 @@ function Convection() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Bulk temperature (units)</label>
           <input
             type="number"
@@ -54,8 +55,10 @@ function Convection() {
         </div>
       </div>
 
-      {answer && <p className={styles.answer}>{answer}</p>}
-      <button onClick={handleSolve}>Calculate</button>
+      <div className={styles["btn-ans"]}>
+        <ButtonCalci handleSolve={handleSolve} />
+        {answer && <p>{answer}</p>}
+      </div>
     </div>
   );
 }

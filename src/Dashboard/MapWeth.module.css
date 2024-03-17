@@ -1,10 +1,7 @@
 .map {
-  /* position: absolute; */
-  z-index: 10; /* this worked to move zoom in and out below  navbar*/
-  /* width: 100%; */
+  z-index: 10;
   height: 100%;
-  /* flex: 0 0 100%; */
-  /* border: 0px solid transparent; */
+
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }

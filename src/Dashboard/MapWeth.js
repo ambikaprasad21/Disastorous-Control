@@ -24,8 +24,6 @@ function MapWeth({ onMapClick }) {
 
   const [newCenter, setNewCenter] = useState(center);
 
-  //   useEffect(function () {}, [newCenter]);
-
   useEffect(
     function () {
       if (position) {
@@ -44,15 +42,11 @@ function MapWeth({ onMapClick }) {
     }
   }
 
-  // if (!position) return;
-  //   if (!newCenter) return;
   return (
     <MapContainer
       center={newCenter}
       zoom={5}
-      // enableHighAccuracy={true}
       minZoom={3}
-      // zoomControl={false}
       style={{ height: "80vh" }}
       className={styles.map}
     >

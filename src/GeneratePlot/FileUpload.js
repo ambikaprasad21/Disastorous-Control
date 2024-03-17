@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import JSZip from "jszip";
 import { DNA } from "react-loader-spinner";
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styles from "./FileUpload.module.css";
@@ -21,8 +20,6 @@ function FileUpload() {
   const [twoColumnChartImage, setTwoColumnChartImage] = useState(null);
   const [column1, setColumn1] = useState("");
   const [column2, setColumn2] = useState("");
-
-  // const [title, setTitle] = useState(document.title || "");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,7 +42,6 @@ function FileUpload() {
     const formData = new FormData();
     formData.append("file", file);
 
-    // console.log(isLoading);
     setIsLoading1(true);
     setError1("");
     fetch(`${BASE_URL}/upload`, {
@@ -56,7 +52,6 @@ function FileUpload() {
       .then((zipBlob) => {
         const zipUrl = URL.createObjectURL(zipBlob);
 
-        // Extract images from the zip file
         fetch(zipUrl)
           .then((zipResponse) => zipResponse.blob())
           .then((zipData) => {
@@ -64,7 +59,6 @@ function FileUpload() {
             return zip.loadAsync(zipData);
           })
           .then((zip) => {
-            // Get images from the zip file
             zip
               .file("colored_chart.png")
               .async("blob")
@@ -102,7 +96,6 @@ function FileUpload() {
           method: "POST",
           body: formData,
         });
-        // setIsLoading2(false);
 
         if (response.ok) {
           const blob = await response.blob();
@@ -129,7 +122,6 @@ function FileUpload() {
         </h1>
 
         <div className={styles["file-upload"]}>
-          {/* <label for="files">Select Image</label> */}
           <input
             type="file"
             id="files"
@@ -176,11 +168,7 @@ function FileUpload() {
 
         <div className={styles["canvas"]}>
           <div className={styles["combined col"]}>
-            <Button
-              handleInput={handleUpload}
-              // className={styles.btn}
-              disabled={isLoading1}
-            >
+            <Button handleInput={handleUpload} disabled={isLoading1}>
               {isLoading1 ? "Generating..." : "Combined Data Visualization"}
             </Button>
             {isLoading1 && (
@@ -236,7 +224,6 @@ function FileUpload() {
               </div>
               <Button
                 handleInput={handleGenerateTwoColumnChart}
-                // className={styles.btn}
                 disabled={isLoading2}
               >
                 {isLoading2 ? "Generating..." : "Generate Two-Column Chart"}

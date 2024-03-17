@@ -10,7 +10,7 @@ function Maps() {
       <div className={styles.bg}>
         <div className={styles.section}>
           <Earthquake />
-          <Tsunami />
+          {/* <Tsunami /> */}
           <Volcano />
         </div>
       </div>

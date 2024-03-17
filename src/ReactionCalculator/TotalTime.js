@@ -1,13 +1,12 @@
 import { useState } from "react";
 import styles from "./TotalTime.module.css";
+import ButtonCalci from "../utils/ButtonCalci";
 
 function TotalTime() {
- 
-
- const [order, setorder] = useState(0);
-  const [initconcen, setiniconcen] = useState(0);
-  const [finalconcen, setfinalconcen] = useState(0);
-  const [rateconstant, setrateconstant] = useState(0);
+  const [order, setorder] = useState(null);
+  const [initconcen, setiniconcen] = useState(null);
+  const [finalconcen, setfinalconcen] = useState(null);
+  const [rateconstant, setrateconstant] = useState(null);
   const [answer, setanswer] = useState("");
 
   function handleSolve() {
@@ -22,37 +21,52 @@ function TotalTime() {
       setanswer(time.toFixed(2));
     }
   }
-    return(
-        <div className={styles.container}>
-        <h1>please enter</h1>
+  return (
+    <div>
+      <div className={styles.container}>
+        <h1>Enter Values</h1>
         <div className={styles.inputs}>
-           <div className={styles['label-input']}>
-           <label>Rate constant (units)</label>
-           <input type="number"></input>
-           </div>
+          <div className={styles["label-input"]}>
+            <label>Rate constant (units)</label>
+            <input
+              type="number"
+              value={rateconstant}
+              onChange={(e) => setrateconstant(e.target.value)}
+            ></input>
+          </div>
 
-           <div className={styles['label-input']}>
-           <label>Order of reaction (units)</label>
-           <input type="number"></input>
-           </div>
+          <div className={styles["label-input"]}>
+            <label>Order of reaction (units)</label>
+            <input
+              type="number"
+              value={order}
+              onChange={(e) => setorder(e.target.value)}
+            ></input>
+          </div>
 
-           <div className={styles['label-input']}>
-           <label>Initial Concentration (units)</label>
-           <input type ="number"></input>
-           </div>
+          <div className={styles["label-input"]}>
+            <label>Initial Concentration (units)</label>
+            <input
+              type="number"
+              value={initconcen}
+              onChange={(e) => setiniconcen(e.target.value)}
+            ></input>
+          </div>
 
-           <div className={styles['label-input']}>
-           <label>Final concentration (units)</label>
-           <input type ="number"></input>
-           </div>
-          
-           
-           
-
+          <div className={styles["label-input"]}>
+            <label>Final concentration (units)</label>
+            <input
+              type="number"
+              value={finalconcen}
+              onChange={(e) => setfinalconcen(e.target.value)}
+            ></input>
+          </div>
         </div>
       </div>
-      {answer && <p className={styles.answer}>{answer} </p>}
-      <button onClick={handleSolve}>Calculate</button>
+      <div className={styles["btn-ans"]}>
+        <ButtonCalci handleSolve={handleSolve} />
+        {answer && <p>{answer}</p>}
+      </div>
     </div>
   );
 }

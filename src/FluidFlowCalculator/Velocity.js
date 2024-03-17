@@ -1,13 +1,14 @@
 import { useState } from "react";
 import styles from "./Velocity.module.css";
+import ButtonCalci from "../utils/ButtonCalci";
 
 function Velocity() {
-  const [Radius, setRadius] = useState(0);
-  const [Pressure, setPressure] = useState(0);
-  const [CenterRadius, setCenterRadius] = useState(0);
-  const [Viscosity, setViscosity] = useState(0);
-  const [Length, setLength] = useState(0);
-  const [answer, setanswer] = useState(0);
+  const [Radius, setRadius] = useState(null);
+  const [Pressure, setPressure] = useState(null);
+  const [CenterRadius, setCenterRadius] = useState(null);
+  const [Viscosity, setViscosity] = useState(null);
+  const [Length, setLength] = useState(null);
+  const [answer, setanswer] = useState("");
 
   function handleSolve() {
     const speed =
@@ -18,9 +19,9 @@ function Velocity() {
 
   return (
     <div className={styles.container}>
-      <h1>please enter</h1>
+      <h1>Enter Values</h1>
       <div className={styles.inputs}>
-        <div>
+        <div className={styles["label-input"]}>
           <label>Radius (units)</label>
           <input
             type="number"
@@ -29,7 +30,7 @@ function Velocity() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Pressure (units)</label>
           <input
             type="number"
@@ -38,7 +39,7 @@ function Velocity() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Viscosity (units)</label>
           <input
             type="number"
@@ -47,7 +48,7 @@ function Velocity() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Length of pipe (units)</label>
           <input
             type="number"
@@ -56,7 +57,7 @@ function Velocity() {
           ></input>
         </div>
 
-        <div>
+        <div className={styles["label-input"]}>
           <label>Distance from center of pipe (units)</label>
           <input
             type="number"
@@ -65,8 +66,10 @@ function Velocity() {
           ></input>
         </div>
       </div>
-      {answer && <p className={styles.answer}>{answer}</p>}
-      <button onClick={handleSolve}>Calculate</button>
+      <div className={styles["btn-ans"]}>
+        <ButtonCalci handleSolve={handleSolve} />
+        {answer && <p>{answer}</p>}
+      </div>
     </div>
   );
 }

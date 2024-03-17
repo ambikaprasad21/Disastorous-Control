@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DNA } from "react-loader-spinner";
 import Tesseract from "tesseract.js";
 import { MathJax, MathJaxContext } from "better-react-mathjax";
@@ -24,12 +24,14 @@ const config = {
 };
 
 function Assistant() {
-  const [image, setImage] = useState(null);
-  const [imageText, setImageText] = useState(null);
+  const [image, setImage] = useState(localStorage.getItem("image") || null);
+  const [imageText, setImageText] = useState(
+    localStorage.getItem("imageText") || null
+  );
 
   const [isLoadingText, setIsLoadingText] = useState(false);
   const [isLoadingAns, setIsLoadingAns] = useState(false);
-  const [answer, setAswer] = useState(null);
+  const [answer, setAswer] = useState(localStorage.getItem("answer") || null);
 
   const apiKey = process.env.REACT_APP_openai_api;
   const apiUrl = "https://api.openai.com/v1/chat/completions";
@@ -44,8 +46,10 @@ function Assistant() {
       setIsLoadingText(true);
       const { data } = await Tesseract.recognize(imageUrl, "eng");
       const prompt = data.text.trim();
-      //   console.log(prompt);
+
       setImageText(prompt);
+      localStorage.setItem("image", imageUrl);
+      localStorage.setItem("imageText", prompt);
     } catch (err) {
       console.log(err.message);
     } finally {
@@ -53,12 +57,17 @@ function Assistant() {
     }
   };
 
-  async function handleGenerateSolution() {
+  const handleGenerateSolution = async () => {
+    if (!imageText) {
+      return alert(
+        "No question text found. Please input question text or image file"
+      );
+    }
+
     try {
       setIsLoadingAns(true);
       setAswer(null);
 
-      // Make a request to OpenAI API to generate solution
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
@@ -76,7 +85,6 @@ function Assistant() {
             },
             { role: "user", content: imageText },
           ],
-          // prompt: imageText,
           max_tokens: 1000,
         }),
       });
@@ -85,28 +93,14 @@ function Assistant() {
       console.log(data);
       console.log(data.choices[0].message.content.trim());
       const generatedSolution = data.choices[0].message.content;
-
-      // setAswer(
-      //   `data:text/plain;charset=utf-8,${encodeURIComponent(generatedSolution)}`
-      // );
       setAswer(generatedSolution);
+      localStorage.setItem("answer", generatedSolution);
     } catch (error) {
       console.error("Error:", error);
     } finally {
       setIsLoadingAns(false);
     }
-    // try {
-    //   //   setIsLoading(true);
-    //   //   const { data } = await Tesseract.recognize(image, "eng");
-    //   //   const prompt = data.text.trim();
-    //   //   console.log(prompt);
-    //   //   setImageText(prompt);
-    // } catch (err) {
-    //   console.log(err.message);
-    // } finally {
-    //   setIsLoading(false);
-    // }
-  }
+  };
 
   return (
     <>
@@ -163,12 +157,6 @@ function Assistant() {
             )}
           </div>
 
-          {/* {!answer && (
-            <div>
-              <p>Answer Screen</p>
-            </div>
-          )} */}
-
           {!answer && isLoadingAns && (
             <DNA
               visible={true}
@@ -182,21 +170,6 @@ function Assistant() {
 
           {answer && (
             <div>
-              {/* <img src={answer} alt="answer" /> */}
-              {/* <p>{answer}</p> */}
-              {/* <MathJaxContext
-                config={{
-                  displayAlign: "center",
-                  displayIndent: "2em",
-                  tex: {
-                    packages: ["base", "ams"],
-                    tags: "ams",
-                  },
-                }}
-              >
-                <MathJax>{answer}</MathJax>
-              </MathJaxContext> */}
-
               <h1 className={styles.solheading}>Solution:</h1>
 
               {answer.split("\n").map((line, index) => (
@@ -211,7 +184,7 @@ function Assistant() {
           <div>
             <Button
               handleInput={handleGenerateSolution}
-              isLoading={!image || isLoadingAns}
+              isLoading={isLoadingAns}
             >
               Generate Solution
             </Button>

@@ -1,13 +1,11 @@
 .section {
   margin-top: 10rem;
-  /* color: white; */
   margin-bottom: 10rem;
 }
 
 .section h1 {
   text-align: center;
-  font-size: 6rem;
-  /* margin-bottom: 5rem; */
+  font-size: 5rem;
 }
 .hidden {
   opacity: 0;
@@ -20,8 +18,8 @@
   transform: translateX(0);
 }
 
-@media (max-width: 425px) {
+@media (max-width: 410px) {
   .section h1 {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 }

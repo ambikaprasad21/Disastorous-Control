@@ -1,25 +1,23 @@
-.primaryH1{
-    /* display: inline-block; */
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-    font-size: 3rem;
+.primaryH1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  font-size: 3rem;
 }
-.option{
-    display: flex;
-    flex-direction: column;
-    width: 18rem;
-    gap: 2rem;
-    
+.option {
+  display: flex;
+  flex-direction: column;
+  width: 18rem;
+  gap: 2rem;
 }
-.secondaryH2{
-    margin-bottom: 2rem;
+.secondaryH2 {
+  margin-bottom: 2rem;
 }
-.option-calci{
-    display: flex;
-    gap: 2rem;
-    border-radius: 1.2rem;
-    border: 1px solid black;
-    padding: 1rem 1.5rem;
-    margin-left: 1rem;
+.option-calci {
+  display: flex;
+  gap: 2rem;
+  border-radius: 1.2rem;
+  border: 1px solid black;
+  padding: 1rem 1.5rem;
+  margin-left: 1rem;
 }

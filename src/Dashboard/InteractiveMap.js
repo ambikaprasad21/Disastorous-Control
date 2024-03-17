@@ -6,17 +6,16 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-// import DetectClick from "../utils/DetectClick";
 
-import React, { useEffect, useRef, useState } from "react";
-// import L from "leaflet";
-// import axios from "axios";
+
+import React, { useEffect,  useState } from "react";
+
 
 import { usePosition } from "../Contexts/PositionContext";
 import MapWeth from "./MapWeth";
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
-// const api = "aa44a7b33e39cc0e971f3c78ebbdcf96";
+
 const api = process.env.REACT_APP_weather_api;
 
 function InteractiveMap() {
@@ -50,18 +49,14 @@ function InteractiveMap() {
 
   const aqiValues = ["abc", "Good", "Fair", "Moderate", "Poor", "Very Poor"];
 
-  // console.log(position);
-
-  // const [defualtLoc, setDefaultLoc] = useState(
-  //   position ? [position.latitude, position.longitude] : [51.505, -0.09]
-  // );
+ 
 
   const [clickPosition, setClickPosition] = useState([]);
   const [myPosition, setMyPosition] = useState([51.505, -0.09]);
 
   useEffect(
     function () {
-      // if (isLoading) return;
+      
       async function getLocWeather() {
         setLoadingNewPos(true);
         try {
@@ -70,19 +65,18 @@ function InteractiveMap() {
           let lat, lng;
 
           if (clickPosition && clickPosition.length === 2) {
-            // If user clicked on the map
+          
             [lat, lng] = clickPosition;
           } else if (isLoading) {
             return;
           } else if (position && position.latitude && position.longitude) {
-            // If user's position is available
+            
             lat = position.latitude;
             lng = position.longitude;
           } else {
-            // Fallback to default coordinates
+            
             [lat, lng] = [51.505, -0.09];
           }
-          // console.log(myPosition[0], myPosition[1]);
           const response = await fetch(
             `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
@@ -117,7 +111,6 @@ function InteractiveMap() {
 
           const data = await response.json();
 
-          // console.log(data);
 
           if (!data.countryCode) {
             throw new Error(
@@ -184,7 +177,6 @@ function InteractiveMap() {
     }
   }, [inViewh1, inViewdiv, inViewMap, controls]);
 
-  // if (!position) return;
 
   return (
     <motion.div className={styles.section}>
@@ -402,21 +394,6 @@ function InteractiveMap() {
   );
 }
 
-// function ChangeCenter({ position }) {
-//   const map = useMap();
-//   map.setView(position);
-//   return null;
-// }
 
-// function DetectClick({ onMapClick }) {
-//   const map = useMap();
-//   useMapEvents({
-//     click: (e) => {
-//       const { lat, lng } = e.latlng;
-//       map.setView([lat, lng], map.getZoom());
-//       onMapClick({ lat, lng });
-//     },
-//   });
-// }
 
 export default InteractiveMap;

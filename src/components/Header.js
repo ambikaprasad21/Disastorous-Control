@@ -1,26 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
-import { IonIcon } from "@ionic/react";
-// import { menuOutline, closeOutline } from "ionicons";
+// import { IonIcon } from "@ionic/react";
 import styles from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <div
@@ -34,11 +20,10 @@ const Header = () => {
         <div className={styles["logo-container"]}>
           <Link to="/">
             <img
-              src="images/logo_nobg.png"
+              src="./images/logo_nobg.png"
               alt="Logo"
               className={styles.logo}
             />
-            
           </Link>
           <p className={styles.title}>GreenForGreen</p>
         </div>

@@ -1,6 +1,5 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-// import Navbar from "../components/Navbar";
 import Awareness from "./Awareness";
 import InteractiveMap from "./InteractiveMap";
 import Maps from "./Maps";

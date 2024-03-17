@@ -1,9 +1,15 @@
 import { Outlet } from "react-router";
 import styles from "./ReactorDesign.module.css";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 function ReactorDesign() {
-  function solve() {}
+  const [activeButton, setActiveButton] = useState(null);
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
+
   return (
     <div>
       <h1 className={styles.primaryH1}> Reaction kinetic Calculator</h1>
@@ -12,10 +18,16 @@ function ReactorDesign() {
       </h2>
       <div className={styles["option-calci"]}>
         <div className={styles.option}>
-          <button>
+          <button
+            className={activeButton === "cstr" ? styles.active : ""}
+            onClick={() => handleButtonClick("cstr")}
+          >
             <NavLink to="Space-Time-CSTR">Space time CSTR</NavLink>
           </button>
-          <button>
+          <button
+            className={activeButton === "pfr" ? styles.active : ""}
+            onClick={() => handleButtonClick("pfr")}
+          >
             <NavLink to="Space-Time-PFR">Space time for PFR</NavLink>
           </button>
         </div>

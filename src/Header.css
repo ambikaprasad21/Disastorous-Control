@@ -1,41 +1,38 @@
-
-
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    background: rgba(255, 255, 255, 0.1); /* Adjust opacity as needed */
-    backdrop-filter: blur(10px); /* Adjust blur effect as needed */
-    padding: 10px 20px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Adjust shadow as needed */
-    z-index: 1000;
-  }
-  
-  .logo {
-    max-width: 70px; /* Adjust the logo size as needed */
-    height: auto;
-  }
-  
-  .nav-bar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-bar li {
-    cursor: pointer;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    color: green;
-    font-weight: bold;
-  }
-  
-  .nav-bar li:hover {
-    background-color: #555;
-  }
-   
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.logo {
+  max-width: 70px;
+  height: auto;
+}
+
+.nav-bar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-bar li {
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  color: green;
+  font-weight: bold;
+}
+
+.nav-bar li:hover {
+  background-color: #555;
+}

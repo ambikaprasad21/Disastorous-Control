@@ -1,25 +1,28 @@
-.container{
-
+.container h1 {
+  margin-bottom: 2rem;
 }
 
-.container h1{
-    margin-bottom: 2rem;
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.inputs{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.label-input {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
 }
 
-.label-input{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 2rem;
+.label-input label {
+  font-size: 1.5rem;
+  font-weight: 550;
 }
 
-.label-input label{
-    font-size: 1.5rem;
-    font-weight: 550;
+.btn-ans {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
