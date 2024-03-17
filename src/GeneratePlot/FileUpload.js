@@ -16,16 +16,16 @@ function FileUpload() {
   const [error2, setError2] = useState("");
   const [file, setFile] = useState(null);
   const [chartImage, setChartImage] = useState(
-    localStorage.getItem("chartImage") || null
+    sessionStorage.getItem("chartImage") || null
   );
   const [describeImage, setDescribeImage] = useState(
-    localStorage.getItem("describeImage") || null
+    sessionStorage.getItem("describeImage") || null
   );
   const [twoColumnChartImage, setTwoColumnChartImage] = useState(
-    localStorage.getItem("twocolchart") || null
+    sessionStorage.getItem("twocolchart") || null
   );
-  const [column1, setColumn1] = useState(localStorage.getItem("col1") || "");
-  const [column2, setColumn2] = useState(localStorage.getItem("col2") || "");
+  const [column1, setColumn1] = useState(sessionStorage.getItem("col1") || "");
+  const [column2, setColumn2] = useState(sessionStorage.getItem("col2") || "");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,7 +70,7 @@ function FileUpload() {
               .async("blob")
               .then((coloredBlob) => {
                 setChartImage(URL.createObjectURL(coloredBlob));
-                localStorage.setItem(
+                sessionStorage.setItem(
                   "chartImage",
                   URL.createObjectURL(coloredBlob)
                 );
@@ -81,7 +81,7 @@ function FileUpload() {
               .async("blob")
               .then((describeBlob) => {
                 setDescribeImage(URL.createObjectURL(describeBlob));
-                localStorage.setItem(
+                sessionStorage.setItem(
                   "describeImage",
                   URL.createObjectURL(describeBlob)
                 );
@@ -115,7 +115,7 @@ function FileUpload() {
           const blob = await response.blob();
           console.log(blob);
           setTwoColumnChartImage(URL.createObjectURL(blob));
-          localStorage.setItem("twocolchart", URL.createObjectURL(blob));
+          sessionStorage.setItem("twocolchart", URL.createObjectURL(blob));
         }
       } else {
         alert("Both column names are required for a two-column chart");
@@ -225,7 +225,7 @@ function FileUpload() {
                     value={column1}
                     onChange={(e) => {
                       setColumn1(e.target.value);
-                      localStorage.setItem("col1", e.target.value);
+                      sessionStorage.setItem("col1", e.target.value);
                     }}
                     className={styles["col-value"]}
                   />
@@ -237,7 +237,7 @@ function FileUpload() {
                     value={column2}
                     onChange={(e) => {
                       setColumn2(e.target.value);
-                      localStorage.setItem("col2", e.target.value);
+                      sessionStorage.setItem("col2", e.target.value);
                     }}
                     className={styles["col-value"]}
                   />

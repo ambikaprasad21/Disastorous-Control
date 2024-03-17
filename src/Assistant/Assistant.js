@@ -24,14 +24,14 @@ const config = {
 };
 
 function Assistant() {
-  const [image, setImage] = useState(localStorage.getItem("image") || null);
+  const [image, setImage] = useState(sessionStorage.getItem("image") || null);
   const [imageText, setImageText] = useState(
-    localStorage.getItem("imageText") || null
+    sessionStorage.getItem("imageText") || null
   );
 
   const [isLoadingText, setIsLoadingText] = useState(false);
   const [isLoadingAns, setIsLoadingAns] = useState(false);
-  const [answer, setAswer] = useState(localStorage.getItem("answer") || null);
+  const [answer, setAswer] = useState(sessionStorage.getItem("answer") || null);
 
   const [row, setRow] = useState(5);
   const [cols, setCols] = useState(100);
@@ -69,8 +69,8 @@ function Assistant() {
       const prompt = data.text.trim();
 
       setImageText(prompt);
-      localStorage.setItem("image", imageUrl);
-      localStorage.setItem("imageText", prompt);
+      sessionStorage.setItem("image", imageUrl);
+      sessionStorage.setItem("imageText", prompt);
     } catch (err) {
       console.log(err.message);
     } finally {
@@ -117,7 +117,7 @@ function Assistant() {
       console.log(data.choices[0].message.content.trim());
       const generatedSolution = data.choices[0].message.content;
       setAswer(generatedSolution);
-      localStorage.setItem("answer", generatedSolution);
+      sessionStorage.setItem("answer", generatedSolution);
     } catch (error) {
       console.error("Error:", error);
     } finally {
