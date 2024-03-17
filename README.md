@@ -10,11 +10,11 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://i.ibb.co/pyt4HhT/Screenshot-2024-03-18-012921.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.ibb.co/pyt4HhT/Screenshot-2024-03-18-012921.png" alt="project-screenshot" width="800" >
 
-<img src="https://i.ibb.co/ZfZ2nyZ/Screenshot-2024-03-18-012906.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.ibb.co/ZfZ2nyZ/Screenshot-2024-03-18-012906.png" alt="project-screenshot" width="800">
 
-<img src="https://i.ibb.co/j4wKqyN/Screenshot-2024-03-18-012954.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.ibb.co/j4wKqyN/Screenshot-2024-03-18-012954.png" alt="project-screenshot" width="800" >
 
 <h2>🧐 Features</h2>
 
