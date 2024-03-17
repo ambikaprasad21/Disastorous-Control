@@ -5,7 +5,14 @@ import styles from "./ChemicalCalci.module.css";
 import { useEffect, useState } from "react";
 
 function ChemicalCalci() {
-  const [select, setSelect] = useState(false);
+  const [select, setSelect] = useState(
+    sessionStorage.getItem("calculator") || false
+  );
+
+  function handleSelect() {
+    setSelect(true);
+    sessionStorage.setItem("calculator", true);
+  }
 
   useEffect(function () {
     document.title = "GFG | Chemical Calculator";
@@ -19,7 +26,7 @@ function ChemicalCalci() {
       <Header />
       <h1 className={styles.heading}>Chemical Calculator</h1>
       <div className={styles.section}>
-        <div className={styles.options} onClick={() => setSelect(true)}>
+        <div className={styles.options} onClick={handleSelect}>
           <NavLink
             to={"reaction-kinetics"}
             style={{

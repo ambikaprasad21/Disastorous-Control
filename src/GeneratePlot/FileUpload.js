@@ -15,11 +15,17 @@ function FileUpload() {
   const [error1, setError1] = useState("");
   const [error2, setError2] = useState("");
   const [file, setFile] = useState(null);
-  const [chartImage, setChartImage] = useState(null);
-  const [describeImage, setDescribeImage] = useState(null);
-  const [twoColumnChartImage, setTwoColumnChartImage] = useState(null);
-  const [column1, setColumn1] = useState("");
-  const [column2, setColumn2] = useState("");
+  const [chartImage, setChartImage] = useState(
+    localStorage.getItem("chartImage") || null
+  );
+  const [describeImage, setDescribeImage] = useState(
+    localStorage.getItem("describeImage") || null
+  );
+  const [twoColumnChartImage, setTwoColumnChartImage] = useState(
+    localStorage.getItem("twocolchart") || null
+  );
+  const [column1, setColumn1] = useState(localStorage.getItem("col1") || "");
+  const [column2, setColumn2] = useState(localStorage.getItem("col2") || "");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -64,6 +70,10 @@ function FileUpload() {
               .async("blob")
               .then((coloredBlob) => {
                 setChartImage(URL.createObjectURL(coloredBlob));
+                localStorage.setItem(
+                  "chartImage",
+                  URL.createObjectURL(coloredBlob)
+                );
               });
 
             zip
@@ -71,6 +81,10 @@ function FileUpload() {
               .async("blob")
               .then((describeBlob) => {
                 setDescribeImage(URL.createObjectURL(describeBlob));
+                localStorage.setItem(
+                  "describeImage",
+                  URL.createObjectURL(describeBlob)
+                );
               });
           });
       })
@@ -101,6 +115,7 @@ function FileUpload() {
           const blob = await response.blob();
           console.log(blob);
           setTwoColumnChartImage(URL.createObjectURL(blob));
+          localStorage.setItem("twocolchart", URL.createObjectURL(blob));
         }
       } else {
         alert("Both column names are required for a two-column chart");
@@ -208,7 +223,10 @@ function FileUpload() {
                   <input
                     type="text"
                     value={column1}
-                    onChange={(e) => setColumn1(e.target.value)}
+                    onChange={(e) => {
+                      setColumn1(e.target.value);
+                      localStorage.setItem("col1", e.target.value);
+                    }}
                     className={styles["col-value"]}
                   />
                 </div>
@@ -217,7 +235,10 @@ function FileUpload() {
                   <input
                     type="text"
                     value={column2}
-                    onChange={(e) => setColumn2(e.target.value)}
+                    onChange={(e) => {
+                      setColumn2(e.target.value);
+                      localStorage.setItem("col2", e.target.value);
+                    }}
                     className={styles["col-value"]}
                   />
                 </div>

@@ -98,15 +98,17 @@ function Assistant() {
 
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
+          // model: "gpt-4-turbo-preview",
+          // model: "gpt-3.5-turbo-0125",
           messages: [
             {
               role: "system",
               content:
-                "Provide helpful solution to the engineering numerical problems",
+                "Provide Solution To chemical Engineering Numerical Problem. Explain with proper mathematical equations",
             },
             { role: "user", content: imageText },
           ],
-          max_tokens: 1000,
+          max_tokens: 1500,
         }),
       });
 
@@ -131,8 +133,7 @@ function Assistant() {
 
         <div className={styles.alldiv}>
           <p className={styles.note}>
-            <strong>Note: </strong>Please select image file or enter problem in
-            question text
+            Please select image file or enter problem in question text
           </p>
           <div className={styles.imginput}>
             <input
