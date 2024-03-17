@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+<h1 align="center" id="title">GreenForGreen</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center"><img src="https://greenforgreen.vercel.app/images/logo_nobg.png" alt="project-image"></p>
 
-## Available Scripts
+<p id="description">Web application for natural disaster awareness real time climate and pollution data for any location over a map. Earth activity like Earthquake for a single day. Chemical Calculator for specific chemical engineering problem with airtificial intelligence to solve problems. Data analysis and visualization.</p>
 
-In the project directory, you can run:
+<h2>🚀 Demo</h2>
 
-### `npm start`
+[https://greenforgreen.vercel.app/](https://greenforgreen.vercel.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h2>Project Screenshots:</h2>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img src="https://i.ibb.co/pyt4HhT/Screenshot-2024-03-18-012921.png" alt="project-screenshot" width="400" height="400/">
 
-### `npm test`
+<img src="https://i.ibb.co/ZfZ2nyZ/Screenshot-2024-03-18-012906.png" alt="project-screenshot" width="400" height="400/">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src="https://i.ibb.co/j4wKqyN/Screenshot-2024-03-18-012954.png" alt="project-screenshot" width="400" height="400/">
 
-### `npm run build`
+<h2>🧐 Features</h2>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Here're some of the project's best features:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Get latest weather and pollution details
+- Chemical engineering calculator for specifiic engineering problems
+- Open Ai integration for solving problems with the help of question and image or text input
+- Data visualization and statistics of csv file using python
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h2>🛠️ Installation Steps:</h2>
 
-### `npm run eject`
+<p>1. Download the code from this repository</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+press green button to see download option
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p>2. open the project folder path in command prompt and type</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npm i
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<p>3. create a .env file in project folder on same level of package.json file</p>
 
-## Learn More
+```
+create .env file
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<p>4. open .env file and right these line to use api key in project</p>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+REACT_APP_weather_api = {your_openweather_api_key}
+REACT_APP_openai_api = {your_openai_api_key}
+```
 
-### Code Splitting
+<p>5. To Start the project use </p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+npm start
+```
 
-### Analyzing the Bundle Size
+<p>6. To get the python server code you can download it from here(optional)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+https://github.com/ambikaprasad21/py-server-for-codeindroome
+```
 
-### Making a Progressive Web App
+<p>7. To start the python server use</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+python app.py
+```
 
-### Advanced Configuration
+<h2>💻 Built with</h2>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Technologies used in the project:
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- JavaScript React Leaflet-library css modules
+- Python Flask
