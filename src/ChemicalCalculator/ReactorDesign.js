@@ -12,7 +12,7 @@ function ReactorDesign() {
 
   return (
     <div>
-      <h1 className={styles.primaryH1}> Reaction kinetic Calculator</h1>
+      <h1 className={styles.primaryH1}> Reactor Design Calculator</h1>
       <h2 className={styles.secondaryH2}>
         What you want to calculate , select from below :
       </h2>
