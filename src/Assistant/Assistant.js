@@ -33,8 +33,29 @@ function Assistant() {
   const [isLoadingAns, setIsLoadingAns] = useState(false);
   const [answer, setAswer] = useState(localStorage.getItem("answer") || null);
 
+  const [row, setRow] = useState(5);
+  const [cols, setCols] = useState(100);
   const apiKey = process.env.REACT_APP_openai_api;
   const apiUrl = "https://api.openai.com/v1/chat/completions";
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 330) {
+        setCols(30);
+      } else if (window.innerWidth <= 655) {
+        setCols(40);
+      } else if (window.innerWidth <= 750) {
+        setCols(60);
+      } else if (window.innerWidth <= 1030) {
+        setCols(80);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -144,16 +165,16 @@ function Assistant() {
                 />
               </div>
             ) : (
-              <>
+              <div className={styles["ques-text"]}>
                 <label>Question Text:</label>
                 <textarea
-                  rows={5}
-                  cols={50}
+                  rows={row}
+                  cols={cols}
                   type="text"
                   value={imageText}
                   onChange={(e) => setImageText(e.target.value)}
                 />
-              </>
+              </div>
             )}
           </div>
 

@@ -69,16 +69,15 @@
 }
 
 .img-text textarea {
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem;
   border: 2px solid black;
   border-radius: 5px;
   font-size: 1.5rem;
-  color: #b4b4b8;
+  color: black;
 }
 
 .solheading {
   font-size: 1.8rem;
-
   margin-bottom: 1rem;
 }
 .answer {
@@ -87,10 +86,26 @@
   line-height: 2.2rem;
 }
 
+.ques-text {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 830px) {
+  .ques-text {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 @media (max-width: 541px) {
   .containerhead {
     font-size: 4rem;
   }
+}
+
+@media (max-width: 510px) {
 }
 
 @media (max-width: 425px) {
@@ -112,3 +127,5 @@
     font-size: 3rem;
   }
 }
+
+/* @media (max-w); */

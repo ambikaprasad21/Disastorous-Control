@@ -63,7 +63,9 @@ function MapWeth({ onMapClick }) {
         }
       >
         <Popup>
-          {`${newCenter[0].toFixed(2) || ""}, ${newCenter[1].toFixed(2) || ""}`}
+          {`Latitude: ${newCenter[0].toFixed(2) || ""}, Longitude: ${
+            newCenter[1].toFixed(2) || ""
+          }`}
         </Popup>
       </Marker>
 

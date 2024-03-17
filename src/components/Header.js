@@ -20,7 +20,7 @@ const Header = () => {
         <div className={styles["logo-container"]}>
           <Link to="/">
             <img
-              src="./images/logo_nobg.png"
+              src="/images/logo_nobg.png"
               alt="Logo"
               className={styles.logo}
             />
